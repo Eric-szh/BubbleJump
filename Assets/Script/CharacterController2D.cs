@@ -23,7 +23,14 @@ public class CharacterController2D : MonoBehaviour
 	private float poisonTimer = 0;
 	public float poisonTime = 0.5f;
 
+	private bool isJumping = false;
+	private bool wasGrounded = true;
+
+
 	public int health = 3;
+
+	public GameObject face;
+	public GameObject belly;
 
     [Header("Events")]
 	[Space]
@@ -43,7 +50,6 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
 		m_Grounded = false;
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -57,8 +63,10 @@ public class CharacterController2D : MonoBehaviour
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
+
 		}
-	}
+        wasGrounded = m_Grounded;
+    }
 
     private void Update()
     {
@@ -119,6 +127,8 @@ public class CharacterController2D : MonoBehaviour
 			// Add a vertical force to the player.
 			m_Grounded = false;
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			isJumping = true;
+			HideFace();
 		}
 
 		//Check if the player is in contact with foam, only if the player is grounded
@@ -135,6 +145,26 @@ public class CharacterController2D : MonoBehaviour
 			}
         }
 
+		// animation stuff
+		if (isJumping)
+		{
+            switch (health)
+			{
+				case 3:
+                    GetComponent<AniController>().ChangeAnimationState("Player_jump3");
+                    break;
+				case 2:
+					GetComponent<AniController>().ChangeAnimationState("Player_jump2");
+                    break;
+				case 1:
+					GetComponent<AniController>().ChangeAnimationState("Player_jump1");
+                    break;
+			}
+        }
+        else
+		{
+            GetComponent<AniController>().ChangeAnimationState("Player_idle");
+        }
 	}
 
 
@@ -168,5 +198,23 @@ public class CharacterController2D : MonoBehaviour
 	public void DeContactOil(GameObject gameobject)
 	{
         oilList.Remove(gameobject);
+    }
+
+	public void Land()
+	{
+		isJumping = false;
+		ShowFace();
+	}
+
+	private void HideFace()
+	{
+        face.GetComponent<SpriteRenderer>().enabled = false;
+		belly.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+	private void ShowFace()
+	{
+        face.GetComponent<SpriteRenderer>().enabled = true;
+		belly.GetComponent<SpriteRenderer>().enabled = true;
     }
 }
