@@ -4,7 +4,6 @@ public class PlatBubbleCrtler : MonoBehaviour
 {
     bool activated = false;
     bool floating = false;
-    public float secondstoDestroy = 2f;
     public float floatingSpeed = 0.1f;
     public float floatDesotryTime = 2f;
 
@@ -24,25 +23,18 @@ public class PlatBubbleCrtler : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            activated = true;
+            Die();
         }
         if (col.gameObject.tag == "Paper")
         {
             Destroy(col.gameObject);
             floating = true;
-            Invoke("Pop", floatDesotryTime);
+            Invoke("Die", floatDesotryTime);
         }
     }
 
     private void FixedUpdate()
     {
-        if (activated)
-        {
-            // descrease the opacity of the bubble
-            Color color = GetComponent<SpriteRenderer>().color;
-            color.a -= 1 / secondstoDestroy * Time.deltaTime;
-            GetComponent<SpriteRenderer>().color = color;
-        }
 
         if (floating)
         {
@@ -50,10 +42,6 @@ public class PlatBubbleCrtler : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y + floatingSpeed * Time.deltaTime, transform.position.z);
         }
 
-        if (GetComponent<SpriteRenderer>().color.a <= 0)
-        {
-            Destroy(gameObject);
-        }
     }
 
     private void Pop()
@@ -61,4 +49,9 @@ public class PlatBubbleCrtler : MonoBehaviour
         // pop the bubble
         Destroy(gameObject);
     }
+
+    private void Die()
+    {
+        GetComponent<AniController>().ChangeAnimationState("PlatBubblePop");
+    }  
 }
