@@ -1,0 +1,45 @@
+# Unity generated files
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Asset pipeline
+AssetStoreTools*
+
+# Visual Studio / MonoDevelop project files
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+
+# Unity auto-generated files
+*.pidb.meta
+*.pdb.meta
+*.mdb
+*.opendb
+*.VC.db
+
+# Exclude files created by Unity Collab
+**/[Cc]ollab/
+
+# Exclude crash logs
+*.stacktrace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Other configuration files
+*.bak
+*.swp
+*.tmp
