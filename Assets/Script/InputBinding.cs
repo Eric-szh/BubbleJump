@@ -15,7 +15,9 @@ public class InputBinding : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
-        GetComponent<CharacterController2D>().Move(horizontal, jump);
+        bool down = Input.GetButton("Down");
+        // Debug.Log("Horizontal: " + horizontal + " Jump: " + jump + " Down: " + down);
+        GetComponent<CharacterController2D>().Move(horizontal, jump, down);
 
         bool isAiming = Input.GetButton("Fire1") || Input.GetButton("Fire2");
         tail.GetComponent<TailCtrler>().isAiming = isAiming;
@@ -36,6 +38,11 @@ public class InputBinding : MonoBehaviour
         if (skill2)
         {
             GetComponent<CharacterSkillControler>().Skill2();
+        }
+        bool skill3 = Input.GetButtonUp("Fire3");
+        if (skill3)
+        {
+            GetComponent<CharacterSkillControler>().Skill3();
         }
 
         MouthCD -= Time.deltaTime;

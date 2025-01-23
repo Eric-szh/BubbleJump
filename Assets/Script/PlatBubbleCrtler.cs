@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlatBubbleCrtler : MonoBehaviour
 {
-    bool activated = false;
     bool floating = false;
     public float floatingSpeed = 0.1f;
     public float floatDesotryTime = 2f;
