@@ -13,6 +13,10 @@ public class InputBinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<CharacterController2D>().isDead)
+        {
+            return;
+        }
         float horizontal = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
         bool down = Input.GetButton("Down");

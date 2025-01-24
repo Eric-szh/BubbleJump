@@ -42,6 +42,10 @@ public class CharacterController2D : MonoBehaviour
 	public float megaJumpWindow = 0.5f;
 	public float megaJumpStrength = 1000;
 
+	public bool isDead = false;
+	public Vector3 respawnPoint;
+	public float respawnTime;
+
     [Header("Events")]
 	[Space]
 
@@ -94,14 +98,37 @@ public class CharacterController2D : MonoBehaviour
 			Debug.Log("Health: " + health);
 			if (health <= 0)
 			{
-				Debug.Log("Game Over");
+				isDead = true;
+				GetComponent<AniController>().ChangeAnimationState("Player_dies");
+				HideFace();
 			}
 		}
 		
 	}
 
+	public void Respawn()
+	{
+		health = 3;
+		transform.position = respawnPoint;
+		ShowFace();
+		Invoke("RespawnFinished", respawnTime);
+		face.GetComponent<FaceCtrl>().FastBlink();
+        GetComponent<AniController>().ChangeAnimationState("Player_idle");
+    }
+
+	private void RespawnFinished()
+	{
+		isDead = false;
+		face.GetComponent<FaceCtrl>().ResetBlink();
+	}
+
     public void Move(float move, bool jump, bool down)
 	{
+		if (isDead)
+		{
+            return;
+        }
+
 		bool insidePlat = bodyDetect.GetComponent<BodyDetect>().insidePlat;
 
 		//only control the player if grounded or airControl is turned on
