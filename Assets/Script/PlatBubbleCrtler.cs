@@ -30,6 +30,11 @@ public class PlatBubbleCrtler : MonoBehaviour
             floating = true;
             Invoke("Die", floatDesotryTime);
         }
+        if (col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<MonsterUtil>().Restrain();
+            Pop();
+        }
     }
 
     private void FixedUpdate()
