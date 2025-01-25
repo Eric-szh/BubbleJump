@@ -50,6 +50,8 @@ public class CharacterController2D : MonoBehaviour
 	public bool isCharging = false;
 	public Vector3 chargePoint;
 	public bool canCharge = false;
+	public GameObject chargeEffect;
+	public GameObject chargeStation;
 
     [Header("Events")]
 	[Space]
@@ -246,10 +248,13 @@ public class CharacterController2D : MonoBehaviour
         if (canCharge)
 		{
             isCharging = true;
-            GetComponent<AniController>().ChangeAnimationState("Player_charge");
             transform.position = chargePoint;
 			tail.GetComponent<SpriteRenderer>().enabled = false;
 			face.GetComponent<SpriteRenderer>().enabled = false;
+			chargeEffect.SetActive(true);
+			chargeStation.GetComponent<ChargeCtrl>().startCharge();
+			GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+			respawnPoint = chargePoint;
         }
     }
 
@@ -258,6 +263,9 @@ public class CharacterController2D : MonoBehaviour
         isCharging = false;
 		tail.GetComponent<SpriteRenderer>().enabled = true;
 		face.GetComponent<SpriteRenderer>().enabled = true;
+		chargeEffect.SetActive(false);
+		chargeStation.GetComponent<ChargeCtrl>().finishCharge();
+		GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
 
