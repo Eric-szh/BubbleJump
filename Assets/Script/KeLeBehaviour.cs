@@ -1,151 +1,117 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class KeLeBehaviour : MonoBehaviour
 {
-    public GameObject Player;
-    public const float speed = 4f;
+    
+    public GameObject player;
+    public const float speed = 3f;
     public int facingDirection = 0;
     public GameObject attackPoint;
     public float pushForce = 50f;
     public int contactDamage = 1;
-    public Vector3 Initial_position= new Vector3(0, 0, 0);
+    public Vector3 Initial_position = new Vector3(0, 0, 0); 
     public float radius = 5f;
-    public float attackRange = 1f;
+
+
     public float chaseRange = 5f;
+    public float attackRange = 2f;
+    
 
 
     public int Health = 5;
     public int maxHealth = 5;
 
+    public bool forced_patrol = false;
     private bool isDead = false;
     private bool movingRight = true;
-    private Vector3 patrolTarget;
+    private Vector3 patrolTarget  ;
 
     public GameObject gameController;
 
 
-    private void Start()
-    {
-        patrolTarget = Initial_position + new Vector3(radius, 0, 0);
-    }
 
-    private void Update()
-    {
-        if (isDead) return;
 
-        GameObject player = GetComponent<PlayerStateMachine>().Player;
-        if (Vector3.Distance(transform.position, player.transform.position) <= chaseRange)
-        {
-            AttackPlayer(player);
-        }
-        else
-        {
-            Patrol();
-        }
-    }
-    private void Patrol()
+
+
+    public void Patrol()
     {
         if (movingRight)
         {
+            GetComponent<MonsterUtil>().FaceRight();
+            patrolTarget = Initial_position + new Vector3(radius, 0, 0);
             MoveTo(patrolTarget);
             if (Vector3.Distance(transform.position, patrolTarget) < 0.1f)
             {
                 movingRight = false;
-                patrolTarget = Initial_position - new Vector3(radius, 0, 0);
-                SetFacingLeft();
+                
             }
         }
         else
         {
+            GetComponent<MonsterUtil>().FaceLeft();
+            patrolTarget = Initial_position - new Vector3(radius, 0, 0);
             MoveTo(patrolTarget);
             if (Vector3.Distance(transform.position, patrolTarget) < 0.1f)
             {
                 movingRight = true;
-                patrolTarget = Initial_position + new Vector3(radius, 0, 0);
-                SetFacingRight();
+                
+                
             }
         }
     }
-
-    private void AttackPlayer()
+    public void AttackPlayer()
     {
-        GameObject player = GetComponent<PlayerStateMachine>().Player;
-        TurnToPlayer();
-        if (Vector3.Distance(transform.position, player.transform.position) >= attackRange)
-        {
-            MoveTo(player.transform.position);
-        }
-        else 
-        {
-            PushPlayerAway(transform.position);
-        }
+       
         
+        MoveTo(player.transform.position,speed*1.5f);
+
+
     }
 
     public void TurnToPlayer()
     {
-        GameObject player = GetComponent<PlayerStateMachine>().Player;
+        
         if (player.transform.position.x < this.transform.position.x)
         {
-            this.GetComponent<KeLeBehavior>().SetFacingLeft();
+            GetComponent<MonsterUtil>().FaceLeft();
         }
         else
         {
-            this.GetComponent<KeLeBehavior>().SetFacingRight();
+            GetComponent<MonsterUtil>().FaceRight();
         }
     }
 
     public void MoveTo(Vector3 pos, float speed = speed)
     {
+        Debug.Log("moving to " + pos);
+        TurnToPlayer();
         Vector3 newPos = new Vector3(pos.x, this.transform.position.y, this.transform.position.z);
         this.transform.position = Vector3.MoveTowards(this.transform.position, newPos, speed * Time.deltaTime);
     }
 
     public void PushPlayerAway(Vector3 orignalPoint, float upForce = 1.2f, float awayForce = 0.5f)
     {
-        GameObject player = GetComponent<PlayerStateMachine>().Player;
+       
         Vector3 pushDir = (player.transform.position - orignalPoint).normalized;
         Vector2 pushDir2 = new Vector2(Math.Sign(pushDir.x) * awayForce, upForce);
-        if (!player.GetComponent<PlayerBehavior>().death)
+        if (!player.GetComponent<CharacterController2D>().isDead)
         {
-            player.GetComponent<Rigidbody2D>().velocity = pushDir2 * pushForce;
+            player.GetComponent<Rigidbody2D>().linearVelocity = pushDir2 * pushForce;
         }
     }
 
-    private void AtkLeft()
-    {
-        this.attackPoint.transform.localPosition = new Vector3(Math.Abs(this.attackPoint.transform.localPosition.x) * -1, this.attackPoint.transform.localPosition.y, this.attackPoint.transform.localPosition.z);
-    }
+    
 
-    private void AtkRight()
-    {
-        this.attackPoint.transform.localPosition = new Vector3(Math.Abs(this.attackPoint.transform.localPosition.x), this.attackPoint.transform.localPosition.y, this.attackPoint.transform.localPosition.z);
-    }
-
-    public void SetFacingLeft()
-    {
-        if (this.facingDirection == 1)
-        {
-            this.AtkLeft();
-            this.facingDirection = -1;
-        }
-    }
-
-    public void SetFacingRight()
-    {
-        if (this.facingDirection == -1)
-        {
-            this.AtkRight();
-            this.facingDirection = 1;
-        }
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             this.PushPlayerAway(collision.contacts[0].point);
-            collision.gameObject.GetComponent<PlayerBehavior>().TakeDamage(contactDamage);
+            collision.gameObject.GetComponent<CharacterController2D>().Damage(contactDamage);
         }
     }
 
@@ -167,7 +133,37 @@ public class KeLeBehaviour : MonoBehaviour
         
         }
 
-    }
+    public string Decide()
+    {
 
-    
+        
+
+        float player_distance = Vector3.Distance(player.transform.position, this.transform.position);
+        float distance = Vector3.Distance(this.transform.position, Initial_position);
+        if (Health <= 0)
+        {
+            return "Death";
+        }
+        else if ( distance>= radius || player_distance >= chaseRange )
+        {
+            Debug.Log("Patrol");
+            return "Patrol";
+
+        }
+        else if (player_distance < attackRange)
+        {
+            Debug.Log("Attack");
+            return "BodySlam";
+        }
+
+        else
+        {
+            Debug.Log("Chase");
+            return "Chase";
+        }
+
+    }
 }
+
+
+
