@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Paper
+  - TwoWayPlat
+  - Enemy
   layers:
   - Default
   - TransparentFX
