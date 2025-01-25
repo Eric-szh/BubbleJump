@@ -12,7 +12,6 @@ public class KeLeStateMachine : MonoBehaviour
 
     private void Start()
     {
-        this.ChangeState<WaitState>();
     }
 
     public void ChangeState<T>() where T : State

@@ -17,4 +17,9 @@ public class OilStainCtrll : MonoBehaviour
             collision.gameObject.GetComponent<CharacterController2D>().DeContactOil(gameObject);
         }
     }
+
+    public void OilStay()
+    {
+        GetComponent<AniController>().ChangeAnimationState("Stain_stay");
+    }
 }
