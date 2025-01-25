@@ -12,6 +12,7 @@ public class KeLeStateMachine : MonoBehaviour
 
     private void Start()
     {
+        this.ChangeState<DecideState>();
     }
 
     public void ChangeState<T>() where T : State

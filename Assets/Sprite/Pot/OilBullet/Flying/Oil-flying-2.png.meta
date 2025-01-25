@@ -1,10 +1,19 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Sprite/Pot/OilBullet/Flying/Oil-flying-2.png.meta
 guid: 49327f07c078edd409a69ee6e734742d
 TextureImporter:
   internalIDToNameTable:
   - first:
       213: -2178078609428592173
     second: Oil-flying-2_0
+========
+guid: 485264de28fc34841a01d435f828464e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 134719374823193200
+    second: kele09_0
+>>>>>>>> main:Assets/Sprite/Monster/kele/kele09.PNG.meta
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -113,6 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
+<<<<<<<< HEAD:Assets/Sprite/Pot/OilBullet/Flying/Oil-flying-2.png.meta
       name: Oil-flying-2_0
       rect:
         serializedVersion: 2
@@ -120,6 +130,15 @@ TextureImporter:
         y: 593
         width: 771
         height: 361
+========
+      name: kele09_0
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 168
+        width: 218
+        height: 263
+>>>>>>>> main:Assets/Sprite/Monster/kele/kele09.PNG.meta
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +147,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
+<<<<<<<< HEAD:Assets/Sprite/Pot/OilBullet/Flying/Oil-flying-2.png.meta
       spriteID: 3d9c1207b09e5c1e0800000000000000
       internalID: -2178078609428592173
+========
+      spriteID: 07af2b0ce8e9ed100800000000000000
+      internalID: 134719374823193200
+>>>>>>>> main:Assets/Sprite/Monster/kele/kele09.PNG.meta
       vertices: []
       indices: 
       edges: []
@@ -138,7 +162,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +172,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+<<<<<<<< HEAD:Assets/Sprite/Pot/OilBullet/Flying/Oil-flying-2.png.meta
       Oil-flying-2_0: -2178078609428592173
+========
+      kele09_0: 134719374823193200
+>>>>>>>> main:Assets/Sprite/Monster/kele/kele09.PNG.meta
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
