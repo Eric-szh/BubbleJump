@@ -29,6 +29,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public GameObject face;
 	public GameObject belly;
+	public GameObject tail;
 	public GameObject bodyDetect;
 
 	public Vector3 megaDropPoint;
@@ -45,6 +46,10 @@ public class CharacterController2D : MonoBehaviour
 	public bool isDead = false;
 	public Vector3 respawnPoint;
 	public float respawnTime;
+
+	public bool isCharging = false;
+	public Vector3 chargePoint;
+	public bool canCharge = false;
 
     [Header("Events")]
 	[Space]
@@ -124,7 +129,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool jump, bool down)
 	{
-		if (isDead)
+		if (isDead || isCharging)
 		{
             return;
         }
@@ -235,6 +240,25 @@ public class CharacterController2D : MonoBehaviour
             GetComponent<AniController>().ChangeAnimationState("Player_idle");
         }
 	}
+
+	public void Charge()
+	{
+        if (canCharge)
+		{
+            isCharging = true;
+            GetComponent<AniController>().ChangeAnimationState("Player_charge");
+            transform.position = chargePoint;
+			tail.GetComponent<SpriteRenderer>().enabled = false;
+			face.GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+
+	public void ChargeRelease()
+	{
+        isCharging = false;
+		tail.GetComponent<SpriteRenderer>().enabled = true;
+		face.GetComponent<SpriteRenderer>().enabled = true;
+    }
 
 
 	private void Flip()
