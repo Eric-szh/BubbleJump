@@ -13,8 +13,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 	[SerializeField] public int speed = 10;
 
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
+	public bool m_Grounded;            // Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 m_Velocity = Vector3.zero;
@@ -23,7 +22,29 @@ public class CharacterController2D : MonoBehaviour
 	private float poisonTimer = 0;
 	public float poisonTime = 0.5f;
 
+	private bool isJumping = false;
+	private GameObject twoWayPlat;
+
 	public int health = 3;
+
+	public GameObject face;
+	public GameObject belly;
+	public GameObject bodyDetect;
+
+	public Vector3 megaDropPoint;
+	public int megaDropDistance = 6;
+    public bool isMegaDrop;
+	private bool wasMegaDrop;
+	private float orignialGravity;
+	public float megaDropGravity;
+	
+	private bool megaJumpReady = false;
+	public float megaJumpWindow = 0.5f;
+	public float megaJumpStrength = 1000;
+
+	public bool isDead = false;
+	public Vector3 respawnPoint;
+	public float respawnTime;
 
     [Header("Events")]
 	[Space]
@@ -36,29 +57,16 @@ public class CharacterController2D : MonoBehaviour
 	private void Awake()
 	{
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
+		isMegaDrop = false;
+		orignialGravity = m_Rigidbody2D.gravityScale;
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
 	}
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = m_Grounded;
-		m_Grounded = false;
-
-		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
-		for (int i = 0; i < colliders.Length; i++)
-		{
-			if (colliders[i].gameObject != gameObject)
-			{
-				m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
-			}
-		}
-	}
+		return;
+    }
 
     private void Update()
     {
@@ -80,17 +88,48 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Damage(int damage)
 	{
-		health -= damage;
-		Debug.Log("Health: " + health);
-		if (health <= 0)
+		if (GetComponent<CharacterSkillControler>().skill3Activated)
 		{
-            Debug.Log("Game Over");
-        }
+			GetComponent<CharacterSkillControler>().Skill3Blocked();
+            return;
+        } else
+		{
+			health -= damage;
+			Debug.Log("Health: " + health);
+			if (health <= 0)
+			{
+				isDead = true;
+				GetComponent<AniController>().ChangeAnimationState("Player_dies");
+				HideFace();
+			}
+		}
+		
 	}
 
-    public void Move(float move, bool jump)
+	public void Respawn()
 	{
+		health = 3;
+		transform.position = respawnPoint;
+		ShowFace();
+		Invoke("RespawnFinished", respawnTime);
+		face.GetComponent<FaceCtrl>().FastBlink();
+        GetComponent<AniController>().ChangeAnimationState("Player_idle");
+    }
 
+	private void RespawnFinished()
+	{
+		isDead = false;
+		face.GetComponent<FaceCtrl>().ResetBlink();
+	}
+
+    public void Move(float move, bool jump, bool down)
+	{
+		if (isDead)
+		{
+            return;
+        }
+
+		bool insidePlat = bodyDetect.GetComponent<BodyDetect>().insidePlat;
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
@@ -114,11 +153,23 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 		// If the player should jump...
-		if (m_Grounded && jump)
+		if (m_Grounded && jump &&!insidePlat)
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			if (megaJumpReady)
+			{
+                m_Rigidbody2D.AddForce(new Vector2(0f, megaJumpStrength));
+                megaJumpReady = false;
+				CancelInvoke("LoseMegaJump");
+				transform.localScale = new Vector3(1, 1, 1);
+            }
+			else
+			{
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            }
+            isJumping = true;
+			HideFace();
 		}
 
 		//Check if the player is in contact with foam, only if the player is grounded
@@ -135,6 +186,54 @@ public class CharacterController2D : MonoBehaviour
 			}
         }
 
+		if (down || (insidePlat && GetComponent<Rigidbody2D>().linearVelocityY <= 0))
+		{
+			if (twoWayPlat != null)
+			{
+                twoWayPlat.GetComponent<PlatformEffector2D>().rotationalOffset = 180;
+            }
+        }
+        else
+		{
+            if (twoWayPlat != null)
+			{
+                twoWayPlat.GetComponent<PlatformEffector2D>().rotationalOffset = 0;
+            }
+		}
+
+		// Check if the player is able to mega drop, if so, set the gravity to mega drop gravity
+		wasMegaDrop = isMegaDrop;
+		if (down && GetComponent<CharacterSkillControler>().skill3Activated && GetComponent<CharacterSkillControler>().skill3canMegaDrop && !m_Grounded)
+		{
+            isMegaDrop = true;
+			GetComponent<Rigidbody2D>().gravityScale = megaDropGravity;
+
+            if (!wasMegaDrop)
+			{
+                megaDropPoint = transform.position;
+            }
+        }
+
+		// animation stuff
+		if (isJumping)
+		{
+            switch (health)
+			{
+				case 3:
+                    GetComponent<AniController>().ChangeAnimationState("Player_jump3");
+                    break;
+				case 2:
+					GetComponent<AniController>().ChangeAnimationState("Player_jump2");
+                    break;
+				case 1:
+					GetComponent<AniController>().ChangeAnimationState("Player_jump1");
+                    break;
+			}
+        }
+        else
+		{
+            GetComponent<AniController>().ChangeAnimationState("Player_idle");
+        }
 	}
 
 
@@ -147,6 +246,7 @@ public class CharacterController2D : MonoBehaviour
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+
 	}
 
 
@@ -168,5 +268,66 @@ public class CharacterController2D : MonoBehaviour
 	public void DeContactOil(GameObject gameobject)
 	{
         oilList.Remove(gameobject);
+    }
+
+	public void Land()
+	{
+		isJumping = false;
+		ShowFace();
+		// if player is mega dropping, check if the player has fallen enough distance to trigger mega jump
+		if (isMegaDrop)
+		{
+			isMegaDrop = false;
+			GetComponent<Rigidbody2D>().gravityScale = orignialGravity;
+            float fallingDistance = megaDropPoint.y - transform.position.y;
+            Debug.Log("Falling Distance: " + fallingDistance);
+			if (fallingDistance >= megaDropDistance)
+			{
+                // used up the mega drop ability so that the player can't use it again until it expires
+                GetComponent<CharacterSkillControler>().skill3canMegaDrop = false;
+                Debug.Log("Mega Drop");
+				megaJumpReady = true;
+				transform.localScale = new Vector3(1, 0.6f, 1);
+				// TODO: Deal damage to enemies
+				Invoke("LoseMegaJump", megaJumpWindow);
+			}
+        }
+
+	}
+
+	private void LoseMegaJump()
+	{
+        megaJumpReady = false;
+		transform.localScale = new Vector3(1, 1, 1);
+    }
+
+	private void HideFace()
+	{
+        face.GetComponent<SpriteRenderer>().enabled = false;
+		belly.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+	private void ShowFace()
+	{
+        face.GetComponent<SpriteRenderer>().enabled = true;
+		belly.GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+        if (collision.gameObject.tag == "TwoWayPlat")
+		{
+            twoWayPlat = collision.gameObject;
+			// Debug.Log("TwoWayPlat");
+        }
+    }
+
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+        if (collision.gameObject.tag == "TwoWayPlat")
+		{
+            twoWayPlat = null;
+			// Debug.Log("TwoWayPlat");
+        }
     }
 }
