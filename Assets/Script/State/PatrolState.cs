@@ -60,7 +60,7 @@ public class PatrolState : State
 
 
 
-        Debug.Log(Vector3.Distance(transform.position, _currentWaypoint));
+        // Debug.Log(Vector3.Distance(transform.position, _currentWaypoint));
         // if the AI is close to the current waypoint, set the next waypoint
         if (Vector3.Distance(transform.position, _currentWaypoint) < waypointRadius)
         {

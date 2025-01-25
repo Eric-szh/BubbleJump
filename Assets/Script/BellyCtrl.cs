@@ -12,6 +12,7 @@ public class BellyCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         GameObject player = transform.parent.gameObject;
         Vector3 velocity = player.GetComponent<Rigidbody2D>().linearVelocity;
         int health = player.GetComponent<CharacterController2D>().health;
@@ -52,6 +53,5 @@ public class BellyCtrl : MonoBehaviour
                     break;
             }
         }
-      
     }
 }
