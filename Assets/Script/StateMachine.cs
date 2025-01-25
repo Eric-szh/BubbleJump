@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class StateMachine : MonoBehaviour
 {
+
     public State CurrentState => _currentState;
+    [SerializeField]
     private State _currentState;
     public State startState;
 
