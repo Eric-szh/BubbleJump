@@ -8,6 +8,12 @@ public class DoorCtrl : MonoBehaviour
     public int idLinked;
     public Sprite openSprite;
     public Sprite closedSprite;
+    public bool openAni;
+    public string openAniName;
+    public bool closeAni;
+    public string closeAniName;
+    public bool transition;
+    public string transitionAni;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +27,18 @@ public class DoorCtrl : MonoBehaviour
     }
 
     public void Unlock()
+    {
+        if (transition)
+        {
+            GetComponent<AniController>().ChangeAnimationState(transitionAni);
+        }
+        else
+        {
+            UnlockFinish();
+        }
+    }
+
+    public void UnlockFinish()
     {
         isLocked = false;
         GameStateManager.Instance.OpenDoor(doorIndex);
@@ -46,12 +64,26 @@ public class DoorCtrl : MonoBehaviour
     {
         if (isLocked)
         {
-            GetComponent<SpriteRenderer>().sprite = closedSprite;
+            if (closeAni)
+            {
+                GetComponent<AniController>().ChangeAnimationState(closeAniName);
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = closedSprite;
+            }
             GetComponent<BoxCollider2D>().enabled = true;
         }
         else
         {
-            GetComponent<SpriteRenderer>().sprite = openSprite;
+            if (openAni)
+            {
+                GetComponent<AniController>().ChangeAnimationState(openAniName);
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = openSprite;
+            }
             GetComponent<BoxCollider2D>().enabled = false;
         }
     }
