@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] soundClips; // Array for assigning clips in the Inspector
     public int[] soundClipIDs;    // Integer IDs corresponding to each clip (same length as soundClips)
 
-    private Dictionary<int, AudioClip> clipDictionary;
+    [SerializeField]
+    public Dictionary<int, AudioClip> clipDictionary;
     private Dictionary<int, AudioSource> loopingAudioSources; // Manage multiple looping sounds
     private List<AudioSource> audioSources;
 
@@ -34,6 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("AudioManager initialized.");
         PlayLoopingSound(0, 0.3f);
     }
 
@@ -66,6 +68,7 @@ public class AudioManager : MonoBehaviour
     // Method for playing one-time sound effects
     public void PlaySound(int clipID, float volume = 1.0f)
     {
+        Debug.Log($"Playing sound with ID: {clipID}");
         if (clipDictionary.TryGetValue(clipID, out AudioClip clip))
         {
             AudioSource audioSource = GetAvailableAudioSource();
@@ -99,6 +102,7 @@ public class AudioManager : MonoBehaviour
     // Method for playing looping sounds
     public void PlayLoopingSound(int clipID, float volume = 1.0f)
     {
+        Debug.Log($"Playing looping sound with ID: {clipID}");
         if (clipDictionary.TryGetValue(clipID, out AudioClip clip))
         {
             if (!loopingAudioSources.ContainsKey(clipID))

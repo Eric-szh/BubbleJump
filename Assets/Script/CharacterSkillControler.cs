@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -27,7 +28,12 @@ public class CharacterSkillControler : MonoBehaviour
     public float skill3ShieldDuration = 5f;
     public bool skill3canMegaDrop;
     public bool skill3Activated;
+    public List<bool> skillState = new List<bool> { false, false, false };
 
+    public void SetSkillState(int index, bool state)
+    {
+        skillState[index] = state;
+    }
 
     public void Shoot()
     {
@@ -55,7 +61,7 @@ public class CharacterSkillControler : MonoBehaviour
 
     public void Skill1()
     {
-        if (!skill1Ready)
+        if (!skill1Ready || !skillState[0])
         {
             return;
         }
@@ -74,7 +80,7 @@ public class CharacterSkillControler : MonoBehaviour
 
     public void Skill2()
     {
-        if (!skill2Ready)
+        if (!skill2Ready || !skillState[1])
         {
             return;
         }
@@ -86,7 +92,7 @@ public class CharacterSkillControler : MonoBehaviour
 
     public void Skill3()
     {
-        if (!skill3Ready)
+        if (!skill3Ready || !skillState[2])
         {
             return;
         }
