@@ -19,6 +19,10 @@ public class DoorCtrl : MonoBehaviour
     void Start()
     {
         doorIndex = GameStateManager.Instance.RegisterDoor(gameObject);
+        if (!closeAni)
+        {
+            GetComponent<Animator>().enabled = false;
+        }
     }
 
     public void SetState(bool state)
@@ -30,7 +34,14 @@ public class DoorCtrl : MonoBehaviour
     {
         if (transition)
         {
-            GetComponent<AniController>().ChangeAnimationState(transitionAni);
+            if (!closeAni)
+            {
+                GetComponent<Animator>().enabled = true;
+            } else
+            {
+                GetComponent<AniController>().ChangeAnimationState(transitionAni);
+            }
+            
         }
         else
         {
@@ -42,6 +53,10 @@ public class DoorCtrl : MonoBehaviour
     {
         isLocked = false;
         GameStateManager.Instance.OpenDoor(doorIndex);
+        if (!openAni)
+        {
+            GetComponent<Animator>().enabled = false;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
