@@ -121,6 +121,7 @@ public class CharacterController2D : MonoBehaviour
 		Invoke("RespawnFinished", respawnTime);
 		face.GetComponent<FaceCtrl>().FastBlink();
         GetComponent<AniController>().ChangeAnimationState("Player_idle");
+		GameStateManager.Instance.Load();
     }
 
 	private void RespawnFinished()
@@ -255,6 +256,7 @@ public class CharacterController2D : MonoBehaviour
 			chargeStation.GetComponent<ChargeCtrl>().startCharge();
 			GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 			respawnPoint = chargePoint;
+			GameStateManager.Instance.Save();
         }
     }
 

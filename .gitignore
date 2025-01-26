@@ -48,3 +48,6 @@ Thumbs.db
 /Assets/Starter Tiles Platformer
 /Assets/Starter Tiles Platformer
 *.meta
+/UserSettings
+/.vs/BubbleJump
+/.vs
