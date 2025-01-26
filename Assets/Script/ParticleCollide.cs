@@ -14,6 +14,7 @@ public class ParticleCollide : MonoBehaviour
         particleSystem = GetComponent<ParticleSystem>();
     }
 
+
     void OnParticleCollision(GameObject other)
     {
         // Get collision events
@@ -23,6 +24,15 @@ public class ParticleCollide : MonoBehaviour
         {
             ParticleCollisionEvent collisionEvent = collisionEvents[i];
 
+            GameObject objectHit = collisionEvent.colliderComponent.gameObject;
+            // Check if the object have the layer stain 
+            if (objectHit.layer == LayerMask.NameToLayer("Stain"))
+            {
+                GameObject parent = objectHit.transform.parent.gameObject;
+                Destroy(parent);
+
+            }
+
             // Access collision details
             Vector3 collisionPoint = collisionEvent.intersection;
             Vector3 collisionNormal = collisionEvent.normal;
@@ -30,16 +40,15 @@ public class ParticleCollide : MonoBehaviour
 
             if (collisionNormal == Vector3.up)
             {
-                // find the closet point on the surface of the object
-                // for x, round up and - 0.5f
-                // for y, round down
-
-                Vector2 vector2 = new Vector2(collisionPoint.x, collisionPoint.y);
-                Vector2 roundedVector2 = new Vector2(Mathf.Ceil(vector2.x) - 0.5f, Mathf.Floor(vector2.y));
-
-                SkillController.Instance.CreateFoam(new Vector3(roundedVector2.x, roundedVector2.y, 0));
+                // get the size of the particle
+                SkillController.Instance.CreateFoam(new Vector3(collisionPoint.x, collisionPoint.y, 0));
             }
 
         }
+    }
+
+    private void OnDestroy()
+    {
+        SkillController.Instance.RemoveFoam();
     }
 }

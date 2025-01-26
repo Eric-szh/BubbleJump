@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class PlatBubbleCrtler : MonoBehaviour
 {
-    bool activated = false;
     bool floating = false;
     public float floatingSpeed = 0.1f;
     public float floatDesotryTime = 2f;
@@ -23,13 +22,22 @@ public class PlatBubbleCrtler : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            
             Die();
+            AudioManager.Instance.PlaySound(3, 0.5f);
         }
         if (col.gameObject.tag == "Paper")
         {
             Destroy(col.gameObject);
             floating = true;
             Invoke("Die", floatDesotryTime);
+            AudioManager.Instance.PlaySound(3, 0.5f);
+        }
+        if (col.gameObject.tag == "Enemy")
+        {
+            col.gameObject.GetComponent<MonsterUtil>().Restrain();
+            Pop();
+            AudioManager.Instance.PlaySound(3, 0.5f);
         }
     }
 

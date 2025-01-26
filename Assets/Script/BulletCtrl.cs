@@ -40,6 +40,21 @@ public class BulletCtrl : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.GetComponent<MonsterUtil>().Damage(1);
+            Kill();
+        }
+        // if collide with object of the ground layer, destroy the bullet
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            Kill();
+        }
+
+    }
+
     void Kill()
     {
         dead = true;

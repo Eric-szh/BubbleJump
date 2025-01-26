@@ -12,11 +12,18 @@ public class FaceCtrl : MonoBehaviour
     public float blinkRate = 0.5f;
     public float blinkChance = 50;
     private bool isBlinking = false;
+    private float originalBlinkRate;
+
+    void Start()
+    {
+        originalBlinkRate = blinkRate;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isBlinking)
+        int health = transform.parent.gameObject.GetComponent<CharacterController2D>().health;
+        if (!isBlinking && health == 3)
         {
             // do a blinking test
             if (Random.Range(0, 100) < blinkChance)
@@ -29,7 +36,7 @@ public class FaceCtrl : MonoBehaviour
         } 
 
         isBlinking = false;
-        int health = transform.parent.gameObject.GetComponent<CharacterController2D>().health;
+        
         if (health == 3)
         {
             Vector3 mouseDir = MouseUtil.getMouseDirection(transform.position);
@@ -63,5 +70,14 @@ public class FaceCtrl : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = criticalFace;
         }
 
+    }
+
+    public void FastBlink()
+    {
+        blinkChance = 50;
+    }
+
+    public void ResetBlink() { 
+        blinkChance = originalBlinkRate;
     }
 }
