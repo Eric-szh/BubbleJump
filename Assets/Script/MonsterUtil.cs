@@ -4,6 +4,7 @@ using UnityEngine;
 public class MonsterUtil : MonoBehaviour
 {
     public float speed = 1.0f;
+    [SerializeField]
     private Vector3 movingPoint;
     public float movingPointTolerance = 0.1f;
     public bool faceLeft = false;
@@ -17,7 +18,7 @@ public class MonsterUtil : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        movingPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -64,6 +65,25 @@ public class MonsterUtil : MonoBehaviour
         // set the moving point of the monster
         moving = true;
         movingPoint = point;
+    }
+
+    public void TurnToPlayer()
+    {
+        // turn the monster to face the player
+        if (player.transform.position.x < transform.position.x)
+        {
+            FaceLeft();
+        }
+        else
+        {
+            FaceRight();
+        }
+    }
+
+    public void MoveTo(Vector3 point)
+    {
+        // move the monster to the point, but ingore the y axis
+        SetMovingPoint(new Vector3(point.x, transform.position.y, transform.position.z));
     }
 
     public void StopMoving()

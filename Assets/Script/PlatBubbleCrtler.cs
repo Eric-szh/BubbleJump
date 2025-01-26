@@ -5,6 +5,8 @@ public class PlatBubbleCrtler : MonoBehaviour
     bool floating = false;
     public float floatingSpeed = 0.1f;
     public float floatDesotryTime = 2f;
+    public float bubbleLifeTime = 2.5f;
+    private float bubbleLifeTimer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,21 +17,27 @@ public class PlatBubbleCrtler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        bubbleLifeTimer += Time.deltaTime;
+        if (bubbleLifeTimer >= bubbleLifeTime)
+        {
+            Die();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            
             Die();
             AudioManager.Instance.PlaySound(3, 0.5f);
         }
         if (col.gameObject.tag == "Paper")
         {
-            Destroy(col.gameObject);
+            col.gameObject.GetComponent<PaperCtrl>().TryDestoryPaper();
             floating = true;
+            bubbleLifeTimer = -50f;
+            GetComponent<Collider2D>().enabled = false;
+            transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
             Invoke("Die", floatDesotryTime);
             AudioManager.Instance.PlaySound(3, 0.5f);
         }

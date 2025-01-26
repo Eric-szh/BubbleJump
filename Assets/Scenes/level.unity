@@ -1981,6 +1981,14 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1913442083
       objectReference: {fileID: 0}
+    - target: {fileID: 6599597694575303091, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956222623627592971, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9104458958736123491, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
       propertyPath: m_SortingLayer
       value: -1
@@ -6670,6 +6678,9 @@ MonoBehaviour:
   doorLockedStored: 
   powerUpUnlocked: 
   powerUpUnlockedStored: 
+  paperWall: []
+  paperWallDestroyed: 
+  paperWallDestroyedStored: 
   inventory: -1
   inventorySprite: {fileID: 0}
   inventoryStored: -1
@@ -9576,6 +9587,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PaperWall
       objectReference: {fileID: 0}
+    - target: {fileID: 6599597694575303091, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956222623627592971, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: paperIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956222623627592971, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10775,6 +10798,14 @@ PrefabInstance:
     - target: {fileID: 6278999906712931305, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
       propertyPath: m_Name
       value: PaperWall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6599597694575303091, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: isProtected
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8956222623627592971, guid: a3994567fbc79964ebee36d6d1055962, type: 3}
+      propertyPath: isProtected
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
