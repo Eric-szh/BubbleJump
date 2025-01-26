@@ -7,7 +7,7 @@ public class DecideState : State
     public float chaseRange = 5f;
     public float radius = 5f;
     public Vector3 Initial_position = new Vector3(0, 0, 0);
-    
+
     public override void Enter()
     {
         Debug.Log("Decide");

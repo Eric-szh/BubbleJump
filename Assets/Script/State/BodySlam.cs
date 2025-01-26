@@ -10,6 +10,7 @@ public class BodySlam : State
     {
         GetComponent<AniController>().ChangeAnimationState("KeLeBodySlam");
         GetComponent<KeLeBehaviour>().AttackPlayer();
+
     }
 
     public override void Exit()
@@ -19,7 +20,6 @@ public class BodySlam : State
 
     public override void Tick()
     {
-       
         
     }
 

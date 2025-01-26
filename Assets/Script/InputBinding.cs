@@ -48,6 +48,11 @@ public class InputBinding : MonoBehaviour
         {
             GetComponent<CharacterSkillControler>().Skill3();
         }
+        bool charge = Input.GetButton("Charge");  
+        if (charge)
+        {
+            GetComponent<CharacterController2D>().Charge();
+        }
 
         MouthCD -= Time.deltaTime;
         if (MouthCD <= 0)

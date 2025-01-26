@@ -23,6 +23,15 @@ public class ParticleCollide : MonoBehaviour
         {
             ParticleCollisionEvent collisionEvent = collisionEvents[i];
 
+            GameObject objectHit = collisionEvent.colliderComponent.gameObject;
+            // Check if the object have the layer stain 
+            if (objectHit.layer == LayerMask.NameToLayer("Stain"))
+            {
+                GameObject parent = objectHit.transform.parent.gameObject;
+                Destroy(parent);
+
+            }
+
             // Access collision details
             Vector3 collisionPoint = collisionEvent.intersection;
             Vector3 collisionNormal = collisionEvent.normal;

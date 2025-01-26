@@ -12,6 +12,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 	[SerializeField] public int speed = 10;
+	private int original_speed;
 
 	public bool m_Grounded;            // Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
@@ -29,6 +30,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public GameObject face;
 	public GameObject belly;
+	public GameObject tail;
 	public GameObject bodyDetect;
 
 	public Vector3 megaDropPoint;
@@ -46,6 +48,12 @@ public class CharacterController2D : MonoBehaviour
 	public Vector3 respawnPoint;
 	public float respawnTime;
 
+	public bool isCharging = false;
+	public Vector3 chargePoint;
+	public bool canCharge = false;
+	public GameObject chargeEffect;
+	public GameObject chargeStation;
+
     [Header("Events")]
 	[Space]
 
@@ -61,6 +69,7 @@ public class CharacterController2D : MonoBehaviour
 		orignialGravity = m_Rigidbody2D.gravityScale;
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
+		original_speed = speed;
 	}
 
 	private void FixedUpdate()
@@ -124,7 +133,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool jump, bool down)
 	{
-		if (isDead)
+		if (isDead || isCharging)
 		{
             return;
         }
@@ -181,7 +190,7 @@ public class CharacterController2D : MonoBehaviour
                 m_MovementSmoothing = 0.3f;
             } else
 			{
-				speed = 8;
+				speed = original_speed;
                 m_MovementSmoothing = 0.00f;
 			}
         }
@@ -235,6 +244,31 @@ public class CharacterController2D : MonoBehaviour
             GetComponent<AniController>().ChangeAnimationState("Player_idle");
         }
 	}
+
+	public void Charge()
+	{
+        if (canCharge)
+		{
+            isCharging = true;
+            transform.position = chargePoint;
+			tail.GetComponent<SpriteRenderer>().enabled = false;
+			face.GetComponent<SpriteRenderer>().enabled = false;
+			chargeEffect.SetActive(true);
+			chargeStation.GetComponent<ChargeCtrl>().startCharge();
+			GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+			respawnPoint = chargePoint;
+        }
+    }
+
+	public void ChargeRelease()
+	{
+        isCharging = false;
+		tail.GetComponent<SpriteRenderer>().enabled = true;
+		face.GetComponent<SpriteRenderer>().enabled = true;
+		chargeEffect.SetActive(false);
+		chargeStation.GetComponent<ChargeCtrl>().finishCharge();
+		GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+    }
 
 
 	private void Flip()
