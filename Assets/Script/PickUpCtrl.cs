@@ -7,6 +7,7 @@ public class PickUpCtrl : MonoBehaviour
     bool pickupGained = false;
     public bool isInventory = false;
     int inventoryIndex;
+    public int powerUpIndex;
     public Sprite uncollectedSprite;
     public Sprite collectedSprite;
     public DoorCtrl doorToOpen;
@@ -41,6 +42,10 @@ public class PickUpCtrl : MonoBehaviour
             if (isInventory)
             {
                 GameStateManager.Instance.GainInventory(inventoryIndex, uncollectedSprite);
+            } else
+            {
+                // it is a power up then
+                GameStateManager.Instance.UnlockPowerUp(powerUpIndex);
             }
             AudioManager.Instance.PlaySound(pickUpSoundIndex, 0.5f);
         }

@@ -28,8 +28,15 @@ public class ParticleCollide : MonoBehaviour
             // Check if the object have the layer stain 
             if (objectHit.layer == LayerMask.NameToLayer("Stain"))
             {
-                GameObject parent = objectHit.transform.parent.gameObject;
-                Destroy(parent);
+                
+                if (objectHit.transform.parent != null)
+                {
+                    Destroy(objectHit.transform.parent.gameObject);
+                }
+                else
+                {
+                    Destroy(objectHit);
+                }
 
             }
 

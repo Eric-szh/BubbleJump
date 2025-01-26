@@ -24,6 +24,7 @@ public class GameStateManager : MonoBehaviour
     private int inventoryIndex = -1;
     public int inventoryStored = -1;
     public Sprite inventoryStoredSprite;
+    public CharacterSkillControler skillCtrl;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
@@ -68,6 +69,7 @@ public class GameStateManager : MonoBehaviour
     public void UnlockPowerUp(int index)
     {
         powerUpUnlocked[index] = true;
+        skillCtrl.SetSkillState(index, true);
     }
 
     public int RegisterDoor(GameObject door)
@@ -162,6 +164,7 @@ public class GameStateManager : MonoBehaviour
         for (int i = 0; i < powerUpUnlocked.Count; i++)
         {
             powerUpUnlocked[i] = powerUpUnlockedStored[i];
+            skillCtrl.SetSkillState(i, powerUpUnlockedStored[i]);
         }
         for (int i = 0; i < doorLocked.Count; i++)
         {

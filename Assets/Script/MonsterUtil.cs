@@ -45,7 +45,11 @@ public class MonsterUtil : MonoBehaviour
     public void Restrain()
     {
         StopMoving();
-        GetComponent<StateMachine>().ChangeState(restrainState.GetType());
+        if (restrainState != null)
+        {
+            GetComponent<StateMachine>().ChangeState(restrainState.GetType());
+        }
+        
     }
 
     public float GetPlayerDistance()
