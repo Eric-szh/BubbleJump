@@ -6,8 +6,8 @@ public class MonsterUtil : MonoBehaviour
     public float speed = 1.0f;
     private Vector3 movingPoint;
     public float movingPointTolerance = 0.1f;
-    bool faceLeft = false;
-    bool lastFaceLeft = true;
+    public bool faceLeft = false;
+    public bool lastFaceLeft = true;
     public GameObject player;
     public State restrainState;
     public State dieState;
@@ -78,6 +78,7 @@ public class MonsterUtil : MonoBehaviour
         if (!lastFaceLeft)
         {
             FlipSprite();
+            Debug.Log("face left");
             lastFaceLeft = true;
         }
     }
@@ -90,6 +91,7 @@ public class MonsterUtil : MonoBehaviour
         if (lastFaceLeft)
         {
             FlipSprite();
+            Debug.Log("face right");
             lastFaceLeft = false;
         }
 
@@ -105,7 +107,7 @@ public class MonsterUtil : MonoBehaviour
         }
     }
 
-    void FlipSprite()
+    public void FlipSprite()
     {
         // flip the sprite
         // Multiply the sprite's x local scale by -1.
