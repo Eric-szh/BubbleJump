@@ -12,6 +12,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
 	[SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 	[SerializeField] public int speed = 10;
+	private int original_speed;
 
 	public bool m_Grounded;            // Whether or not the player is grounded.
 	private Rigidbody2D m_Rigidbody2D;
@@ -68,6 +69,7 @@ public class CharacterController2D : MonoBehaviour
 		orignialGravity = m_Rigidbody2D.gravityScale;
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
+		original_speed = speed;
 	}
 
 	private void FixedUpdate()
@@ -188,7 +190,7 @@ public class CharacterController2D : MonoBehaviour
                 m_MovementSmoothing = 0.3f;
             } else
 			{
-				speed = 8;
+				speed = original_speed;
                 m_MovementSmoothing = 0.00f;
 			}
         }
