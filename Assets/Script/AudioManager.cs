@@ -32,6 +32,11 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlayLoopingSound(0, 0.3f);
+    }
+
     private void InitializeClipDictionary()
     {
         clipDictionary = new Dictionary<int, AudioClip>();

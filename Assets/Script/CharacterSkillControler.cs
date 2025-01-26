@@ -48,6 +48,7 @@ public class CharacterSkillControler : MonoBehaviour
         {
             bullet.transform.position = rightBulletPoint.position;
         }
+        AudioManager.Instance.PlaySound(35, 0.5f);
         bullet.GetComponent<BulletCtrl>().isLeft = isLeft;
     }
 

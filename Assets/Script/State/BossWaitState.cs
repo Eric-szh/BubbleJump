@@ -16,6 +16,6 @@ public class BossWaitState : State
 
     public void Activate()
     {
-        GetComponent<StateMachine>().ChangeState(typeof(DecideState));
+        GetComponent<StateMachine>().ChangeState(typeof(BossDecideState));
     }
 }
