@@ -13,6 +13,7 @@ public class KeLeStateMachine : MonoBehaviour
     private void Start()
     {
         this.ChangeState<DecideState>();
+        GetComponent<MonsterUtil>().FlipSprite();
     }
 
     public void ChangeState<T>() where T : State
