@@ -153,6 +153,9 @@ public class GameStateManager : MonoBehaviour
         if (inventory != -1)
         {
             invCtrl.SetSprite(inventorySprite);
+        } else
+        {
+            invCtrl.SetSprite(null);
         }
      }
 

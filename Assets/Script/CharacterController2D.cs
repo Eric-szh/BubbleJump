@@ -54,6 +54,11 @@ public class CharacterController2D : MonoBehaviour
 	public GameObject chargeEffect;
 	public GameObject chargeStation;
 
+	public bool onFoam = false;
+	public bool creative = false;
+	Vector3 targetVelocity;
+	Vector3 addedVelocity;
+
     [Header("Events")]
 	[Space]
 
@@ -132,6 +137,16 @@ public class CharacterController2D : MonoBehaviour
 		face.GetComponent<FaceCtrl>().ResetBlink();
 	}
 
+	public void BeingPushed(int force)
+	{
+        addedVelocity = new Vector3(force, 0, 0);
+	}
+
+	public void StopBeingPushed()
+	{
+        addedVelocity = Vector3.zero;
+    }
+
     public void Move(float move, bool jump, bool down)
 	{
 		if (isDead || isCharging)
@@ -139,14 +154,21 @@ public class CharacterController2D : MonoBehaviour
             return;
         }
 
-		bool insidePlat = bodyDetect.GetComponent<BodyDetect>().insidePlat;
+        if (creative)
+        {
+            m_Grounded = true;
+			speed = 10;
+        }
+
+        bool insidePlat = bodyDetect.GetComponent<BodyDetect>().insidePlat;
 
 		//only control the player if grounded or airControl is turned on
 		if (m_Grounded || m_AirControl)
 		{
 
 			// Move the character by finding the target velocity
-			Vector3 targetVelocity = new Vector2(move * speed, m_Rigidbody2D.linearVelocity.y);
+			targetVelocity = new Vector2(move * speed, m_Rigidbody2D.linearVelocity.y);
+			targetVelocity += addedVelocity;
 			// And then smoothing it out and applying it to the character
 			m_Rigidbody2D.linearVelocity = Vector3.SmoothDamp(m_Rigidbody2D.linearVelocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
@@ -171,6 +193,7 @@ public class CharacterController2D : MonoBehaviour
 			{
                 m_Rigidbody2D.AddForce(new Vector2(0f, megaJumpStrength));
                 megaJumpReady = false;
+				AudioManager.Instance.PlaySound(6, 0.5f);
 				CancelInvoke("LoseMegaJump");
 				transform.localScale = new Vector3(1, 1, 1);
             }
@@ -183,7 +206,7 @@ public class CharacterController2D : MonoBehaviour
 		}
 
 		//Check if the player is in contact with foam, only if the player is grounded
-		if (m_Grounded)
+		if (m_Grounded && !onFoam)
 		{
             if (foamList.Count > 0)
 			{
@@ -210,6 +233,8 @@ public class CharacterController2D : MonoBehaviour
                 twoWayPlat.GetComponent<PlatformEffector2D>().rotationalOffset = 0;
             }
 		}
+
+	
 
 		// Check if the player is able to mega drop, if so, set the gravity to mega drop gravity
 		wasMegaDrop = isMegaDrop;
@@ -248,7 +273,7 @@ public class CharacterController2D : MonoBehaviour
 
 	public void Charge()
 	{
-        if (canCharge)
+        if (canCharge && !isCharging && !isJumping)
 		{
             isCharging = true;
             transform.position = chargePoint;
@@ -256,7 +281,9 @@ public class CharacterController2D : MonoBehaviour
 			face.GetComponent<SpriteRenderer>().enabled = false;
 			chargeEffect.SetActive(true);
 			chargeStation.GetComponent<ChargeCtrl>().startCharge();
+			GetComponent<AniController>().ChangeAnimationState("Player_idle");
 			GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+			GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 			respawnPoint = chargePoint;
 			GameStateManager.Instance.Save();
         }
@@ -319,6 +346,7 @@ public class CharacterController2D : MonoBehaviour
             Debug.Log("Falling Distance: " + fallingDistance);
 			if (fallingDistance >= megaDropDistance)
 			{
+                AudioManager.Instance.PlaySound(5, 0.5f);
                 // used up the mega drop ability so that the player can't use it again until it expires
                 GetComponent<CharacterSkillControler>().skill3canMegaDrop = false;
                 Debug.Log("Mega Drop");

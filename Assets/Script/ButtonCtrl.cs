@@ -9,6 +9,7 @@ public class ButtonCtrl : MonoBehaviour
     public Sprite pressedSprite;
     public DoorCtrl doorToOpen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int buttonSoundIndex;
     void Start()
     {
         buttonIndex = GameStateManager.Instance.RegisterButton(gameObject);
@@ -38,6 +39,7 @@ public class ButtonCtrl : MonoBehaviour
             GameStateManager.Instance.ButtonPressed(buttonIndex);
             buttonPressed = true;
             doorToOpen.Unlock();
+            AudioManager.Instance.PlaySound(buttonSoundIndex, 0.5f);
         }
     }
 

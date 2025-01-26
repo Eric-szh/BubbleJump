@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 936847853627948396}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.614, z: 0}
+  m_LocalPosition: {x: 0, y: 0.398, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 153011287
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1c711ff6c08f344da0d7c43c1c33d5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -236,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 1263069877990967356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.614, z: 0}
+  m_LocalPosition: {x: 0, y: -0.398, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -265,8 +265,8 @@ MonoBehaviour:
   rightClose: {fileID: 21300000, guid: b1c711ff6c08f344da0d7c43c1c33d5a, type: 3}
   leftOpen: {fileID: 21300000, guid: d29df0fb326b7354f979b044c7134185, type: 3}
   rightOpen: {fileID: 21300000, guid: e4a7e661a84edf14eb95b464ef30fc48, type: 3}
-  leftAim: {fileID: 21300000, guid: 750d81a32d146f844bb5a3582d3acf74, type: 3}
-  rightAim: {fileID: 21300000, guid: 5e3700202ac29b04b8e653032520112c, type: 3}
+  leftAim: {fileID: 21300000, guid: 039436c08f4371a4bba7df47b76c04c2, type: 3}
+  rightAim: {fileID: 21300000, guid: b7d92b14b62e3b94e8571d55a37a6050, type: 3}
 --- !u!1 &2232512168564567113
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,8 +431,8 @@ Transform:
   m_GameObject: {fileID: 2542150222896688512}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.348, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -0.35, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3834478384815289457}
@@ -478,9 +478,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 58168779
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: 153011287
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -748,8 +748,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4902701493071185802}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.782, y: 0.653, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.7819996, y: 0.43699956, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -779,8 +779,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5444628189364611444}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.167, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.274, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -853,7 +853,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.1095777}
+  m_Offset: {x: 0, y: 0.14123577}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -863,7 +863,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.22889772}
+  m_Size: {x: 0.62010765, y: 0.16558158}
   m_EdgeRadius: 0
 --- !u!114 &1392841247148465662
 MonoBehaviour:
@@ -1002,8 +1002,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735434208109387835}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.832, y: 0.655, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8319998, y: 0.43900037, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1332,13 +1332,14 @@ MonoBehaviour:
   megaJumpWindow: 0.5
   megaJumpStrength: 2000
   isDead: 0
-  respawnPoint: {x: 0, y: 0, z: 0}
+  respawnPoint: {x: 2.7, y: 0, z: 0}
   respawnTime: 2
   isCharging: 0
   chargePoint: {x: 0, y: 0, z: 0}
   canCharge: 0
   chargeEffect: {fileID: 1191643945517284273}
   chargeStation: {fileID: 0}
+  onFoam: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:

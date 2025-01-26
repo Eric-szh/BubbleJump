@@ -13,6 +13,7 @@ public class MonsterUtil : MonoBehaviour
     public State dieState;
     public bool moving = true;
     public int health = 1;
+    public int hitSoundIndex = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -105,6 +106,7 @@ public class MonsterUtil : MonoBehaviour
         {
             GetComponent<StateMachine>().ChangeState(dieState.GetType());
         }
+        AudioManager.Instance.PlaySound(hitSoundIndex, 0.5f);
     }
 
     public void FlipSprite()

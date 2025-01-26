@@ -14,6 +14,7 @@ public class DoorCtrl : MonoBehaviour
     public string closeAniName;
     public bool transition;
     public string transitionAni;
+    public int doorSoundIndex;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -47,6 +48,7 @@ public class DoorCtrl : MonoBehaviour
         {
             UnlockFinish();
         }
+        AudioManager.Instance.PlaySound(doorSoundIndex, 0.5f);
     }
 
     public void UnlockFinish()

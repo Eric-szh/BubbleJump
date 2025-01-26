@@ -42,6 +42,7 @@ public class ThrowAndRunState : State
         // create a projectile and set its direction and speed
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.GetComponent<ProjectileStaight>().direction = GetComponent<MonsterUtil>().GetPlayerDirection();
+        AudioManager.Instance.PlaySound(22, 0.5f);
     }
 
     public void Decide()
