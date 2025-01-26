@@ -6,13 +6,15 @@ public class MeleeAttackState : State
     public State nextState;
     public Transform attackPoint;
     public float attackRange = 1.0f;
+    public string attackAnimation = "Boss_kick";
+    public float kickDistance = 2.0f;
     public override void Enter()
     {
-        GetComponent<AniController>().ChangeAnimationState("Boss_kick");
+        GetComponent<AniController>().ChangeAnimationState(attackAnimation);
         Vector3 playerLastLocation = GetComponent<MonsterUtil>().player.transform.position;
         // depending on the player's location, the boss will kick the player to the left or right 2 units
         Vector3 direction = GetComponent<MonsterUtil>().GetPlayerDirection();
-        Vector3 kickTarget = playerLastLocation + direction * -2;
+        Vector3 kickTarget = playerLastLocation + direction * -kickDistance;
         originalSpeed = GetComponent<MonsterUtil>().speed;   
         GetComponent<MonsterUtil>().speed = 3.0f;
         GetComponent<MonsterUtil>().MoveTo(kickTarget);

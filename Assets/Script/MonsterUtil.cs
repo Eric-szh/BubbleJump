@@ -7,6 +7,7 @@ public class MonsterUtil : MonoBehaviour
     [SerializeField]
     private Vector3 movingPoint;
     public float movingPointTolerance = 0.1f;
+    public bool setFaceLeft = false;
     public bool faceLeft = false;
     public bool lastFaceLeft = true;
     public GameObject player;
@@ -19,6 +20,18 @@ public class MonsterUtil : MonoBehaviour
     void Start()
     {
         movingPoint = transform.position;
+        if (setFaceLeft)
+        {
+            faceLeft = true;
+            lastFaceLeft = true;
+            FaceLeft();
+        }
+        else
+        {
+            faceLeft = false;
+            lastFaceLeft = false;
+            FaceRight();
+        }
     }
 
     // Update is called once per frame

@@ -25,6 +25,6 @@ public class BodySlam : State
 
     public void Leave()
     {
-        GetComponent<KeLeStateMachine>().ChangeState<DecideState>();
+        GetComponent<StateMachine>().ChangeState(typeof(PatrolState));
     }
 }
