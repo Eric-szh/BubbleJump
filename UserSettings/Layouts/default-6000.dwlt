@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+
     y: 281.14285
     width: 1539.4286
     height: 186.85715
@@ -146,6 +147,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+
     width: 228.57143
     height: 468
   m_MinSize: {x: 201, y: 226}
@@ -171,6 +173,7 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+
     y: 468
     width: 1768
     height: 308
@@ -298,6 +301,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+
     width: 1768
     height: 468
   m_MinSize: {x: 200, y: 100}
@@ -322,6 +326,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+
     width: 1539.4286
     height: 281.14285
   m_MinSize: {x: 202, y: 226}
@@ -354,6 +359,7 @@ MonoBehaviour:
     m_TextWithWhitespace: "Animation\u200B"
   m_Pos:
     serializedVersion: 2
+
     x: 228.57144
     y: 359.4286
     width: 1537.4286
@@ -536,6 +542,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
+
     y: 546.28577
     width: 1767
     height: 282

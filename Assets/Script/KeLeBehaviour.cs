@@ -26,8 +26,8 @@ public class KeLeBehaviour : MonoBehaviour
 
     public bool forced_patrol = false;
     private bool isDead = false;
-    private bool movingRight = true;
-    private Vector3 patrolTarget  ;
+    private bool movingRight = false;
+    private Vector3 patrolTarget;
 
     public GameObject gameController;
 
@@ -40,9 +40,11 @@ public class KeLeBehaviour : MonoBehaviour
     {
         if (movingRight)
         {
-            GetComponent<MonsterUtil>().FaceRight();
+            
+            
+           
             patrolTarget = Initial_position + new Vector3(radius, 0, 0);
-            MoveTo(patrolTarget);
+            GetComponent<MonsterUtil>().SetMovingPoint(patrolTarget);
             if (Vector3.Distance(transform.position, patrolTarget) < 0.1f)
             {
                 movingRight = false;
@@ -51,9 +53,9 @@ public class KeLeBehaviour : MonoBehaviour
         }
         else
         {
-            GetComponent<MonsterUtil>().FaceLeft();
+            
             patrolTarget = Initial_position - new Vector3(radius, 0, 0);
-            MoveTo(patrolTarget);
+            GetComponent<MonsterUtil>().SetMovingPoint(patrolTarget);
             if (Vector3.Distance(transform.position, patrolTarget) < 0.1f)
             {
                 movingRight = true;
@@ -64,9 +66,9 @@ public class KeLeBehaviour : MonoBehaviour
     }
     public void AttackPlayer()
     {
-       
-        
-        MoveTo(player.transform.position,speed*1.5f);
+
+
+        GetComponent< MonsterUtil > ().SetMovingPoint(player.transform.position);
 
 
     }
