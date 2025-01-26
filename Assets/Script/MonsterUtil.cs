@@ -8,22 +8,32 @@ public class MonsterUtil : MonoBehaviour
     public float movingPointTolerance = 0.1f;
     public bool faceLeft = false;
     public bool lastFaceLeft = true;
+    public bool setFaceLeft = false;
     public GameObject player;
     public State restrainState;
     public State dieState;
-    public bool moving = true;
+    private bool moving = true;
     public int health = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        if (setFaceLeft)
+        {
+            lastFaceLeft = true;
+            FaceLeft();
+        }
+        else
+        {
+            lastFaceLeft = false;
+            FaceRight();           
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Vector3.Distance(transform.position, movingPoint) > movingPointTolerance && moving)
+        Debug.Log(moving);
+        if ((Vector3.Distance(transform.position, movingPoint) > movingPointTolerance) && moving)
         {
             // move the monster to the moving point
             transform.position = Vector3.MoveTowards(transform.position, movingPoint, speed * Time.deltaTime);
@@ -61,12 +71,14 @@ public class MonsterUtil : MonoBehaviour
     public void SetMovingPoint(Vector3 point)
     {
         // set the moving point of the monster
+        Debug.Log("moving to"+ point);
         moving = true;
         movingPoint = point;
     }
 
     public void StopMoving()
     {
+        Debug.Log("stop moving");
         moving = false;
     }
 

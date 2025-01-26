@@ -16,8 +16,8 @@ public class KeLeBehaviour : MonoBehaviour
     public float radius = 5f;
 
 
-    public float chaseRange = 5f;
-    public float attackRange = 2f;
+    
+    public float attackRange = 4f;
     
 
 
@@ -40,12 +40,12 @@ public class KeLeBehaviour : MonoBehaviour
     {
         if (movingRight)
         {
-            
-            
-           
+
+
+
             patrolTarget = Initial_position + new Vector3(radius, 0, 0);
             GetComponent<MonsterUtil>().SetMovingPoint(patrolTarget);
-            if (Vector3.Distance(transform.position, patrolTarget) < 0.1f)
+            if (Vector3.Distance(transform.position, patrolTarget) < 0.5f||(transform.position.x > patrolTarget.x))
             {
                 movingRight = false;
                 
@@ -56,7 +56,7 @@ public class KeLeBehaviour : MonoBehaviour
             
             patrolTarget = Initial_position - new Vector3(radius, 0, 0);
             GetComponent<MonsterUtil>().SetMovingPoint(patrolTarget);
-            if (Vector3.Distance(transform.position, patrolTarget) < 0.1f)
+            if ((Vector3.Distance(transform.position, patrolTarget) < 0.5f )||(transform.position.x < patrolTarget.x))
             {
                 movingRight = true;
                 
@@ -68,7 +68,7 @@ public class KeLeBehaviour : MonoBehaviour
     {
 
 
-        GetComponent< MonsterUtil > ().SetMovingPoint(player.transform.position);
+        GetComponent< MonsterUtil> ().SetMovingPoint(player.transform.position);
 
 
     }
@@ -94,7 +94,7 @@ public class KeLeBehaviour : MonoBehaviour
         this.transform.position = Vector3.MoveTowards(this.transform.position, newPos, speed * Time.deltaTime);
     }
 
-    public void PushPlayerAway(Vector3 orignalPoint, float upForce = 1.2f, float awayForce = 0.5f)
+    public void PushPlayerAway(Vector3 orignalPoint, float upForce = 1f, float awayForce = 0.8f)
     {
        
         Vector3 pushDir = (player.transform.position - orignalPoint).normalized;
@@ -138,30 +138,31 @@ public class KeLeBehaviour : MonoBehaviour
     public string Decide()
     {
 
-        
-
-        float player_distance = Vector3.Distance(player.transform.position, this.transform.position);
-        float distance = Vector3.Distance(this.transform.position, Initial_position);
+        float player_distance = Vector3.Distance(player.transform.position, transform.position);
+        float distance = Vector3.Distance(transform.position, Initial_position);
+        Debug.Log("Player distance: " + player_distance);
+        Debug.Log("Distance: " + distance);
         if (Health <= 0)
         {
             return "Death";
         }
-        else if ( distance>= radius || player_distance >= chaseRange )
-        {
-            Debug.Log("Patrol");
-            return "Patrol";
-
-        }
-        else if (player_distance < attackRange)
+        else if (player_distance < (attackRange + 0.1f))
         {
             Debug.Log("Attack");
             return "BodySlam";
         }
 
+        else if (( distance > radius) || (player_distance>attackRange))
+        {
+            Debug.Log("Patrol");
+            return "Patrol";
+
+        }
+        
         else
         {
-            Debug.Log("Chase");
-            return "Chase";
+            Debug.Log("Unknown");
+            return "Unknown";
         }
 
     }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BodySlam : State
 {
-
+    public float slamSpeed = 3.5f;
 
     public override void Enter()
     {
         GetComponent<AniController>().ChangeAnimationState("KeLeBodySlam");
+        GetComponent<MonsterUtil>().speed = slamSpeed;
         GetComponent<KeLeBehaviour>().AttackPlayer();
 
     }
@@ -25,6 +26,8 @@ public class BodySlam : State
 
     public void Leave()
     {
-        GetComponent<KeLeStateMachine>().ChangeState<DecideState>();
+        GetComponent<MonsterUtil>().speed = 1.0f;
+
+        GetComponent<StateMachine>().ChangeState(typeof(PatrolState));
     }
 }

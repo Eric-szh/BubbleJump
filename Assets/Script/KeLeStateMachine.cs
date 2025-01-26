@@ -14,6 +14,7 @@ public class KeLeStateMachine : MonoBehaviour
     {
         this.ChangeState<DecideState>();
         GetComponent<MonsterUtil>().FlipSprite();
+        GetComponent<KeLeBehaviour>().Initial_position=transform.position;
     }
 
     public void ChangeState<T>() where T : State

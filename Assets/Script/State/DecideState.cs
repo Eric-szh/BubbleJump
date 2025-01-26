@@ -23,18 +23,18 @@ public class DecideState : State
     public override void Tick()
     {
         string decision= GetComponent<KeLeBehaviour>().Decide();
-        if (decision == "Chase")
-        {
-            
-            GetComponent<KeLeStateMachine>().ChangeState<Chase>();
-        }
-        else if (decision == "Patrol")
+        if (decision == "Patrol")
         {
            
             GetComponent<KeLeStateMachine>().ChangeState<Patrol>();
         }
+        else if (decision == "BodySlam")
+        {
+            GetComponent<KeLeStateMachine>().ChangeState<BodySlam>();
+        }
         
-    }
+
+        }
 
     
        
