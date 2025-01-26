@@ -251,8 +251,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a28ab02d0f0894f8cf366f3b12a9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 208509583}
-  soundEffects: []
+  soundClips:
+  - {fileID: 8300000, guid: 0b02b4b114c0c884daa9daae9c3b4d1d, type: 3}
+  - {fileID: 8300000, guid: 9ea9d19c461792a48ab8ace85f172bfb, type: 3}
+  - {fileID: 8300000, guid: e81ee8be6afc3f34cb008603506c088b, type: 3}
+  - {fileID: 8300000, guid: 77c6d55e7e2961e41b3dc687b6da34ae, type: 3}
+  - {fileID: 8300000, guid: 6533dc16f24c41348a7515cf127f5051, type: 3}
+  - {fileID: 8300000, guid: 3563dd1064ef3cf4e9b5a6a18f63cb8f, type: 3}
+  - {fileID: 8300000, guid: 931234b0ea52e1c4c8de70870992eb39, type: 3}
+  - {fileID: 8300000, guid: 23e4ee5a63ee8874a9048273f57df541, type: 3}
+  - {fileID: 8300000, guid: f87c75a1ee288c6498e87ffb32da83e7, type: 3}
+  - {fileID: 8300000, guid: aedddeed1f5b01548a0c4d6be598d943, type: 3}
+  - {fileID: 8300000, guid: bb82945f1bb1aba4586c86eab85893ab, type: 3}
+  - {fileID: 8300000, guid: 3893c7ff411804942b52298eee7d7294, type: 3}
+  - {fileID: 8300000, guid: efe4c3ac7bfafee44b69a19edf280970, type: 3}
+  - {fileID: 8300000, guid: d558432ecf1d05b47b089ecac3b0f00f, type: 3}
+  - {fileID: 8300000, guid: 29142dfedc427df45844da8abc3bd46c, type: 3}
+  - {fileID: 8300000, guid: 276e036ff807cae409a4246b5f03c1a4, type: 3}
+  - {fileID: 8300000, guid: 6c96f4874c2bedd43bbc07bfc292a421, type: 3}
+  - {fileID: 8300000, guid: 07a3f93c04f0d4644a82bea6958cd604, type: 3}
+  - {fileID: 8300000, guid: ee4d0b0e4d387ee44898180985c0a961, type: 3}
+  - {fileID: 8300000, guid: f09ae2b872685d94b93c1d0f1e1075e3, type: 3}
+  - {fileID: 8300000, guid: 90fc6d249e1e5aa4d87cd7c3a32d51b8, type: 3}
+  - {fileID: 8300000, guid: 1579eed950d3eb44db4e42716f721ed3, type: 3}
+  - {fileID: 8300000, guid: 82d4c142bbb92034e8a8b8562bea2526, type: 3}
+  - {fileID: 8300000, guid: 7188885b64f0cf64190c7d8877b00de0, type: 3}
+  - {fileID: 8300000, guid: 1162519426a95f741919c301c6ae4fd9, type: 3}
+  - {fileID: 8300000, guid: 17c6334ae2b36eb409eda2981e8bdb1a, type: 3}
+  - {fileID: 8300000, guid: 5e4aad6338433794f8c80ac38c7f2d35, type: 3}
+  - {fileID: 8300000, guid: 8264b2b2446dd374bbf38645303eb246, type: 3}
+  - {fileID: 8300000, guid: 5d1020ba47218d24e93e95a87e29ad09, type: 3}
+  - {fileID: 8300000, guid: e65b78b0a5516084a92198a060a4edbd, type: 3}
+  - {fileID: 8300000, guid: e5d5aab2bf036b548b8c57af411e393e, type: 3}
+  - {fileID: 8300000, guid: 44279273da5573b4fba8341344426d8e, type: 3}
+  soundClipIDs: 0100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000e0000000f000000100000001100000012000000130000001400000015000000160000001700000018000000190000001a0000001b0000001c0000001d0000001e0000001f0000002000000021000000
+  maxAudioSources: 20
 --- !u!82 &208509583
 AudioSource:
   m_ObjectHideFlags: 0
@@ -925,6 +958,12 @@ MonoBehaviour:
   idLinked: 0
   openSprite: {fileID: 0}
   closedSprite: {fileID: 21300000, guid: a454b20f0e3cf9747bbd7262c494fc81, type: 3}
+  openAni: 0
+  openAniName: 
+  closeAni: 0
+  closeAniName: 
+  transition: 0
+  transitionAni: 
 --- !u!61 &602890637
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1234,6 +1273,7 @@ MonoBehaviour:
   dieState: {fileID: 721655730}
   moving: 1
   health: 4
+  hitSoundIndex: 24
 --- !u!114 &721655726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1757,6 +1797,12 @@ MonoBehaviour:
   idLinked: 0
   openSprite: {fileID: 0}
   closedSprite: {fileID: 21300000, guid: 43efcc17ac5baa241aa9f4e594227d10, type: 3}
+  openAni: 0
+  openAniName: 
+  closeAni: 0
+  closeAniName: 
+  transition: 0
+  transitionAni: 
 --- !u!61 &924135416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2771,6 +2817,7 @@ MonoBehaviour:
   dieState: {fileID: 1893840336}
   moving: 1
   health: 1
+  hitSoundIndex: 21
 --- !u!95 &1893840330
 Animator:
   serializedVersion: 7
@@ -3399,11 +3446,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3834478384815289457, guid: 3192fb2ba0021664c9a28db39e31e78a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.17
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3834478384815289457, guid: 3192fb2ba0021664c9a28db39e31e78a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.07
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 3834478384815289457, guid: 3192fb2ba0021664c9a28db39e31e78a, type: 3}
       propertyPath: m_LocalPosition.z

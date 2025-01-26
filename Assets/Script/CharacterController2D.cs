@@ -171,6 +171,7 @@ public class CharacterController2D : MonoBehaviour
 			{
                 m_Rigidbody2D.AddForce(new Vector2(0f, megaJumpStrength));
                 megaJumpReady = false;
+				AudioManager.Instance.PlaySound(6, 0.5f);
 				CancelInvoke("LoseMegaJump");
 				transform.localScale = new Vector3(1, 1, 1);
             }
@@ -319,6 +320,7 @@ public class CharacterController2D : MonoBehaviour
             Debug.Log("Falling Distance: " + fallingDistance);
 			if (fallingDistance >= megaDropDistance)
 			{
+                AudioManager.Instance.PlaySound(5, 0.5f);
                 // used up the mega drop ability so that the player can't use it again until it expires
                 GetComponent<CharacterSkillControler>().skill3canMegaDrop = false;
                 Debug.Log("Mega Drop");

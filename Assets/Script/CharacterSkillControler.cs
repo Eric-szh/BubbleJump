@@ -66,6 +66,7 @@ public class CharacterSkillControler : MonoBehaviour
         direction.Normalize();
         Quaternion rotation = Quaternion.FromToRotation(Vector3.right, direction);
         Instantiate(skill1ParticlePrefab, skill1StartingPoint.position, rotation);
+        AudioManager.Instance.PlaySound(1, 0.5f);
     }
 
     public void Skill2()
@@ -77,6 +78,7 @@ public class CharacterSkillControler : MonoBehaviour
         skill2Ready = false;
         skill2CDTimer = 0;
         Instantiate(skill2BubblePrefab, skill2StartingPoint.position, Quaternion.identity);
+        AudioManager.Instance.PlaySound(2, 0.5f);
     }
 
     public void Skill3()
@@ -91,6 +93,7 @@ public class CharacterSkillControler : MonoBehaviour
         skill3Activated = true;
         skill3canMegaDrop = true;
         Invoke("Skill3End", skill3ShieldDuration);  
+        AudioManager.Instance.PlaySound(4, 0.5f);
     }
 
     public void Skill3Blocked()

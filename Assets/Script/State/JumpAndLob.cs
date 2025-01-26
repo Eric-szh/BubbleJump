@@ -28,6 +28,7 @@ public class JumpAndLob : State
         bullet.GetComponent<ProjectileLob>().startPoint = transform;
         bullet.GetComponent<ProjectileLob>().targetPoint = GetComponent<MonsterUtil>().player.transform;
         bullet.GetComponent<ProjectileLob>().LaunchProjectile();
+        AudioManager.Instance.PlaySound(25, 0.5f);
     }
 
     public void Leave()
