@@ -108,6 +108,7 @@ public class CharacterController2D : MonoBehaviour
             return;
         } else
 		{
+			AudioManager.Instance.PlaySound(34, 0.5f);
 			health -= damage;
 			Debug.Log("Health: " + health);
 			if (health <= 0)
@@ -199,6 +200,7 @@ public class CharacterController2D : MonoBehaviour
             }
 			else
 			{
+                AudioManager.Instance.PlaySound(36, 0.3f);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             }
             isJumping = true;

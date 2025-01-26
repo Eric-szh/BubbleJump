@@ -7,11 +7,20 @@ public class ProjectileLob : MonoBehaviour
     public float projectileSpeed = 10f; // Speed of the projectile
     public Rigidbody2D projectile; // Rigidbody of the projectile to launch
     public float maxHeight = 2f;  // Max height above the start point
+    public bool useVector = false; // Use the vector to launch the projectile
+    public Vector2 targetPos;
 
     public void LaunchProjectile()
     {
         Vector2 start = startPoint.position;
-        Vector2 target = targetPoint.position;
+        Vector2 target;
+        if (useVector)
+        {
+            target = targetPos;
+        } else
+        {
+            target = targetPoint.position;
+        }
 
         // Gravity
         float gravity = Mathf.Abs(Physics2D.gravity.y);

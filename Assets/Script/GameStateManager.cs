@@ -16,6 +16,9 @@ public class GameStateManager : MonoBehaviour
     public List<bool> doorLockedStored = new List<bool>();
     public List<bool> powerUpUnlocked = new List<bool>();
     public List<bool> powerUpUnlockedStored = new List<bool>();
+    public List<GameObject> paperWall;
+    public List<bool> paperWallDestroyed;
+    public List<bool> paperWallDestroyedStored;
     public int inventory = -1;
     public Sprite inventorySprite;
     private int inventoryIndex = -1;
@@ -102,6 +105,19 @@ public class GameStateManager : MonoBehaviour
         inventorySprite = image;
     }
 
+    public int RegisterPaperWall(GameObject paperWall)
+    {
+        this.paperWall.Add(paperWall);
+        paperWallDestroyed.Add(false);
+        paperWallDestroyedStored.Add(false);
+        return this.paperWall.Count - 1;
+    }
+
+    public void DestoryPaperWall(int index)
+    {
+        paperWallDestroyed[index] = true;
+    }
+
     public void Save()
     {
         for (int i = 0; i < pickupGained.Count; i++)
@@ -121,9 +137,14 @@ public class GameStateManager : MonoBehaviour
         {
             doorLockedStored[i] = doorLocked[i];
         }
-
+        // save inventory state
         inventoryStored = inventory;
         inventoryStoredSprite = inventorySprite;
+        // save paper wall state
+        for (int i = 0; i < paperWall.Count; i++)
+        {
+            paperWallDestroyedStored[i] = paperWallDestroyed[i];
+        }
     }
 
     public void Load()
@@ -156,6 +177,13 @@ public class GameStateManager : MonoBehaviour
         } else
         {
             invCtrl.SetSprite(null);
+        }
+
+        // load paper wall state
+        for (int i = 0; i < paperWall.Count; i++)
+        {
+            paperWallDestroyed[i] = paperWallDestroyedStored[i];
+            paperWall[i].SetActive(paperWallDestroyedStored[i]);
         }
      }
 

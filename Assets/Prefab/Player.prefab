@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371444018036002438}
   - component: {fileID: 8899125229333128958}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 3919757883747185289}
   - component: {fileID: 4808806236973357827}
   - component: {fileID: 4953803959872867728}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Charge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -220,7 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2138604790282961887}
   - component: {fileID: 8968205938126435410}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 8352959981470593928}
   - component: {fileID: 1745113184486864503}
   - component: {fileID: 5770034735702062716}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 1620176611328168089}
   - component: {fileID: 2343377634489054199}
   - component: {fileID: 30046802466697124}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 481185487316009814}
   - component: {fileID: 2386184959467527850}
   - component: {fileID: 1669430363058496081}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Belly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -733,7 +733,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3743459783459050640}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RightM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,7 +764,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3640556238846505956}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Opening
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 9027270980901116578}
   - component: {fileID: 1180705606515631686}
   - component: {fileID: 1392841247148465662}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -889,7 +889,7 @@ GameObject:
   - component: {fileID: 8712415557886126286}
   - component: {fileID: 7606378316196438929}
   - component: {fileID: 140971957126641687}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BubbleShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -987,7 +987,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 76165530032428019}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LeftM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1020,7 +1020,7 @@ GameObject:
   - component: {fileID: 5550011682740517404}
   - component: {fileID: 1348011068426114468}
   - component: {fileID: 6332286596619225382}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1135,7 +1135,7 @@ GameObject:
   - component: {fileID: 2790592689241824665}
   - component: {fileID: 4575208512666013795}
   - component: {fileID: 3308692667050124546}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1340,6 +1340,7 @@ MonoBehaviour:
   chargeEffect: {fileID: 1191643945517284273}
   chargeStation: {fileID: 0}
   onFoam: 0
+  creative: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1374,6 +1375,7 @@ MonoBehaviour:
   skill1CD: 0.5
   skill1ParticlePrefab: {fileID: 9003975394951169166, guid: b5fba3b3b2e78e34d8c4268a81deb240, type: 3}
   skill1StartingPoint: {fileID: 3640556238846505956}
+  currentParticle: {fileID: 0}
   skill2CD: 0.5
   skill2BubblePrefab: {fileID: 7819471768116961273, guid: c2b3c8d59e3bce847a6162c52355db23, type: 3}
   skill2StartingPoint: {fileID: 3640556238846505956}
