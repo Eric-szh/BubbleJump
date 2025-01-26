@@ -964,6 +964,7 @@ MonoBehaviour:
   closeAniName: 
   transition: 0
   transitionAni: 
+  doorSoundIndex: 0
 --- !u!61 &602890637
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1120,7 +1121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &721655720
 Animator:
   serializedVersion: 7
@@ -1644,6 +1645,7 @@ MonoBehaviour:
   unpressedSprite: {fileID: 2279679434788576041, guid: 8ff83ca460716f14db5f8dace378a3d6, type: 3}
   pressedSprite: {fileID: 21300000, guid: 6d9a5b15f3e183f4ca8f7d35f3f13533, type: 3}
   doorToOpen: {fileID: 924135415}
+  buttonSoundIndex: 0
 --- !u!61 &920806214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1803,6 +1805,7 @@ MonoBehaviour:
   closeAniName: 
   transition: 0
   transitionAni: 
+  doorSoundIndex: 0
 --- !u!61 &924135416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2277,6 +2280,7 @@ MonoBehaviour:
   uncollectedSprite: {fileID: 21300000, guid: 1640d80bc0e3a1440bba1e7d6820f293, type: 3}
   collectedSprite: {fileID: 0}
   doorToOpen: {fileID: 602890636}
+  pickUpSoundIndex: 0
 --- !u!212 &1624134201
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3617,11 +3621,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7656390133668951671, guid: b5fba3b3b2e78e34d8c4268a81deb240, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.43
+      value: 19.6
       objectReference: {fileID: 0}
     - target: {fileID: 7656390133668951671, guid: b5fba3b3b2e78e34d8c4268a81deb240, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.93
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 7656390133668951671, guid: b5fba3b3b2e78e34d8c4268a81deb240, type: 3}
       propertyPath: m_LocalPosition.z

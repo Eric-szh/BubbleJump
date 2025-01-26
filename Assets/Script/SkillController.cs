@@ -33,18 +33,15 @@ public class SkillController : MonoBehaviour
 
     public void CreateFoam(Vector3 position)
     {
-        // first check if there are any foam objects at the same position
-        if (foamList.Count > 0)
+        // Go through the list of foam and if the position is too close to another foam, don't create a new one
+        for (int i = 0; i < foamList.Count; i++)
         {
-
-            for (int i = 0; i < foamList.Count; i++)
+            if (Vector3.Distance(foamList[i].transform.position, position) < 0.5f)
             {
-                if (foamList[i].transform.position == position)
-                {
-                    return;
-                }
+                return;
             }
         }
+
         GameObject foam = Instantiate(foamPrefab, position, Quaternion.identity);
         foamList.Add(foam);
     }

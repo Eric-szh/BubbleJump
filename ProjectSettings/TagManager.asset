@@ -9,6 +9,7 @@ TagManager:
   - TwoWayPlat
   - Enemy
   - Stain
+  - Foam
   layers:
   - Default
   - TransparentFX

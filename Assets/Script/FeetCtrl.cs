@@ -12,6 +12,13 @@ public class FeetCtrl : MonoBehaviour
             CharacterController2D controller = GetComponentInParent<CharacterController2D>();
             controller.OnLandEvent.Invoke();
             controller.m_Grounded = true;
+            if (other.gameObject.tag == "Foam")
+            {
+                controller.onFoam = true;
+            } else
+            {
+                controller.onFoam = false;
+            }
         }
     }
 

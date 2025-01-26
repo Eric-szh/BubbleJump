@@ -10,6 +10,7 @@ public class PickUpCtrl : MonoBehaviour
     public Sprite uncollectedSprite;
     public Sprite collectedSprite;
     public DoorCtrl doorToOpen;
+    public int pickUpSoundIndex;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -41,6 +42,7 @@ public class PickUpCtrl : MonoBehaviour
             {
                 GameStateManager.Instance.GainInventory(inventoryIndex, uncollectedSprite);
             }
+            AudioManager.Instance.PlaySound(pickUpSoundIndex, 0.5f);
         }
     }
 

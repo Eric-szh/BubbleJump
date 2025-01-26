@@ -14,6 +14,7 @@ public class CharacterSkillControler : MonoBehaviour
     private bool skill1Ready = true;
     public GameObject skill1ParticlePrefab;
     public Transform skill1StartingPoint;
+    public GameObject currentParticle;
     public float skill2CD = 0.5f;
     private float skill2CDTimer;
     private bool skill2Ready = true;
@@ -59,13 +60,14 @@ public class CharacterSkillControler : MonoBehaviour
         }
         skill1Ready = false;
         skill1CDTimer = 0;
-        SkillController.Instance.RemoveFoam();
+        Destroy(currentParticle);
         Vector3 mousePosition2d = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePosition2d - transform.position;
         direction.z = 0;
         direction.Normalize();
         Quaternion rotation = Quaternion.FromToRotation(Vector3.right, direction);
-        Instantiate(skill1ParticlePrefab, skill1StartingPoint.position, rotation);
+        GameObject particle = Instantiate(skill1ParticlePrefab, skill1StartingPoint.position, rotation);
+        currentParticle = particle;
         AudioManager.Instance.PlaySound(1, 0.5f);
     }
 
