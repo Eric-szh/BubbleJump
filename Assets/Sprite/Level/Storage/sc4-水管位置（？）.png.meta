@@ -82,7 +82,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -438,7 +438,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -447,7 +447,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_0": 3495283818697556517
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_1": 5091572999270164137
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_10": 5289726168140449185
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_11": -1053580766449872561
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_12": -9062101101378818756
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_2": 6994309453924778047
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_3": 2717976584670692112
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_4": 3640823420847998129
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_5": 5028534768183992325
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_6": 8176651181899845718
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_7": 2436534581062635887
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_8": 6248202236023497547
+      "sc4-\u6C34\u7BA1\u4F4D\u7F6E\uFF08\uFF1F\uFF09_9": -7248506440154682408
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
