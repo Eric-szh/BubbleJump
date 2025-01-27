@@ -149,7 +149,7 @@ MonoBehaviour:
   speed: 1
   movingPoint: {x: 0, y: 0, z: 0}
   movingPointTolerance: 0.1
-  setFaceLeft: 0
+  setFaceLeft: 1
   faceLeft: 0
   lastFaceLeft: 1
   player: {fileID: 0}
@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canExit: 0
   oilBullet: {fileID: 4123088076134907588, guid: dc6b9dbf85cc5fe4cbcf82890bfc49e6, type: 3}
+  jumpStrength: 5
 --- !u!114 &1957800925344654018
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -144,7 +144,9 @@ MonoBehaviour:
   targetPoint: {fileID: 0}
   projectileSpeed: 8
   projectile: {fileID: 933160942470796540}
-  maxHeight: 2
+  maxHeight: 1
+  useVector: 0
+  targetPos: {x: 0, y: 0}
 --- !u!58 &3463309258855773624
 CircleCollider2D:
   m_ObjectHideFlags: 0

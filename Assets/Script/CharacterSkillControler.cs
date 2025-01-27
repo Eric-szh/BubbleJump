@@ -61,7 +61,11 @@ public class CharacterSkillControler : MonoBehaviour
 
     public void Skill1()
     {
-        if (!skill1Ready || !skillState[0])
+        if (!skill1Ready)
+        {
+            return;
+        }
+        if (!skillState[0] && !GetComponent<CharacterController2D>().creative)
         {
             return;
         }
@@ -80,7 +84,11 @@ public class CharacterSkillControler : MonoBehaviour
 
     public void Skill2()
     {
-        if (!skill2Ready || !skillState[1])
+        if (!skill2Ready)
+        {
+            return;
+        }
+        if (!skillState[1] && !GetComponent<CharacterController2D>().creative)
         {
             return;
         }
@@ -92,7 +100,11 @@ public class CharacterSkillControler : MonoBehaviour
 
     public void Skill3()
     {
-        if (!skill3Ready || !skillState[2])
+        if (!skill3Ready)
+        {
+            return;
+        }
+        if (!skillState[2] && !GetComponent<CharacterController2D>().creative)
         {
             return;
         }
