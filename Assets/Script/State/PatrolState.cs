@@ -19,13 +19,15 @@ public class PatrolState : State
 
     public override void Enter()
     {
+        // Debug.Log("Patrol State");
         _justInitialized = true;
         GetComponent<AniController>().ChangeAnimationState(animationName);
     }
 
     public override void Exit()
     {
-
+        // Debug.Log("Exit Patrol State");
+        GetComponent<MonsterUtil>().StopMoving();
     }
 
     public override void Tick()
@@ -56,6 +58,7 @@ public class PatrolState : State
                     }
                 }
             }
+            GetComponent<MonsterUtil>().SetMovingPoint(_currentWaypoint);
         }
 
 
@@ -70,13 +73,14 @@ public class PatrolState : State
                 _currentWaypointIndex = 0;
             }
             _currentWaypoint = waypoints[_currentWaypointIndex];
+            // move the AI towards the current waypoint
+            GetComponent<MonsterUtil>().SetMovingPoint(_currentWaypoint);
         }
 
 
 
 
-        // move the AI towards the current waypoint
-        GetComponent<MonsterUtil>().SetMovingPoint(_currentWaypoint);
+        
 
   
     }

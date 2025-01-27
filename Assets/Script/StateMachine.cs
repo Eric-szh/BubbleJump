@@ -65,6 +65,7 @@ public class StateMachine : MonoBehaviour
     {
         if (_currentState != null && !_isTransitioning)
         {
+            // Debug.Log("Current State: " + _currentState);
             _currentState.Tick();
         }
     }

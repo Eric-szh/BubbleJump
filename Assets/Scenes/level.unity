@@ -15171,7 +15171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canPush: 0
   player: {fileID: 1783160854}
-  pushForce: 10
+  pushForce: 5
 --- !u!1 &1868259759
 GameObject:
   m_ObjectHideFlags: 0

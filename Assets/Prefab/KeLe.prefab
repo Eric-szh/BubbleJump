@@ -241,7 +241,7 @@ MonoBehaviour:
   attackPoint: {fileID: 2273820083157772814}
   attackRange: 0.29
   attackAnimation: KeLeBodySlam
-  kickDistance: 1
+  kickDistance: 0
 --- !u!50 &8440314254847648258
 Rigidbody2D:
   serializedVersion: 5
