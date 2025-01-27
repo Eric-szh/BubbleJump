@@ -10945,7 +10945,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.010736465, y: -1.1916676}
+  m_Offset: {x: -0.010736465, y: -0.8482647}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10955,7 +10955,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 20.815525, y: 3.0707664}
+  m_Size: {x: 20.815525, y: 2.3839607}
   m_EdgeRadius: 0
 --- !u!114 &1334508342
 MonoBehaviour:
@@ -12996,11 +12996,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3834478384815289457, guid: 3192fb2ba0021664c9a28db39e31e78a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.28
+      value: 3.51
       objectReference: {fileID: 0}
     - target: {fileID: 3834478384815289457, guid: 3192fb2ba0021664c9a28db39e31e78a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.97
+      value: -0.65
       objectReference: {fileID: 0}
     - target: {fileID: 3834478384815289457, guid: 3192fb2ba0021664c9a28db39e31e78a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14014,6 +14014,18 @@ PrefabInstance:
     - target: {fileID: 5003644203886756554, guid: dbf4c82dbc7298e40941f95365a250ff, type: 3}
       propertyPath: m_ActiveFontFeatures.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173535258384402101, guid: dbf4c82dbc7298e40941f95365a250ff, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173535258384402101, guid: dbf4c82dbc7298e40941f95365a250ff, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5173535258384402101, guid: dbf4c82dbc7298e40941f95365a250ff, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 5858449818685466767, guid: dbf4c82dbc7298e40941f95365a250ff, type: 3}
       propertyPath: m_AnchoredPosition.x
