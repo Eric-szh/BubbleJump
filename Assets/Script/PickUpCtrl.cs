@@ -23,7 +23,7 @@ public class PickUpCtrl : MonoBehaviour
         }
         if (doorToOpen != null)
         {
-            doorToOpen.idLinked = pickupIndex;
+            doorToOpen.idLinked = inventoryIndex;
         }
     }
 
