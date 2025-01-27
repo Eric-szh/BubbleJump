@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      StartCleaningUpMyRoom_0: -8377061144893077469
+      StartCleaningUpMyRoom_1: 4596395309475897424
+      StartCleaningUpMyRoom_2: 7384049610555985837
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

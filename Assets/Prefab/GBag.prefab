@@ -267,7 +267,7 @@ MonoBehaviour:
   speed: 1
   movingPoint: {x: 0, y: 0, z: 0}
   movingPointTolerance: 0.1
-  setFaceLeft: 0
+  setFaceLeft: 1
   faceLeft: 0
   lastFaceLeft: 1
   player: {fileID: 0}

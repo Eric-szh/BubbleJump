@@ -3,6 +3,7 @@ using UnityEngine;
 public class JumpAndLob : State
 {
     public GameObject oilBullet;
+    public int jumpStrength;
     public override void Enter()
     {
         GetComponent<MonsterUtil>().StopMoving();
@@ -19,7 +20,7 @@ public class JumpAndLob : State
 
     public void Jump()
     {
-        GetComponent<Rigidbody2D>().AddForce(Vector3.up * 10, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(Vector3.up * jumpStrength, ForceMode2D.Impulse);
     }
 
     public void Lob()

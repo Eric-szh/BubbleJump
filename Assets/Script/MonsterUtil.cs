@@ -79,6 +79,7 @@ public class MonsterUtil : MonoBehaviour
 
     public void SetMovingPoint(Vector3 point)
     {
+        // Debug.Log("set moving point to " + point);
         // set the moving point of the monster
         moving = true;
         movingPoint = point;
@@ -116,7 +117,6 @@ public class MonsterUtil : MonoBehaviour
         if (!lastFaceLeft)
         {
             FlipSprite();
-            Debug.Log("face left");
             lastFaceLeft = true;
         }
     }
@@ -129,7 +129,6 @@ public class MonsterUtil : MonoBehaviour
         if (lastFaceLeft)
         {
             FlipSprite();
-            Debug.Log("face right");
             lastFaceLeft = false;
         }
 
