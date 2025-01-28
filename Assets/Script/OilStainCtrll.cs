@@ -1,7 +1,18 @@
+using System;
 using UnityEngine;
 
 public class OilStainCtrll : MonoBehaviour
 {
+    public void Start()
+    {
+        GameStateManager.Instance.DeathEvent += DeathEvent;
+    }
+
+    private void DeathEvent()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

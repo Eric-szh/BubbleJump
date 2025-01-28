@@ -26,6 +26,7 @@ public class BossSoupState : State
 
     public void noodleFall()
     {
+        Debug.Log("noodle fall");
         noddle1.GetComponent<NoodleCtrl>().Fall();
         noddle2.GetComponent<NoodleCtrl>().Fall();
     }

@@ -8,6 +8,8 @@ public class MeleeAttackState : State
     public float attackRange = 1.0f;
     public string attackAnimation = "Boss_kick";
     public float kickDistance = 2.0f;
+    public bool moveAfterAttack = false;
+    public Transform movePoint;
     public override void Enter()
     {
         // Debug.Log("Melee Attack State");
@@ -27,6 +29,10 @@ public class MeleeAttackState : State
         GetComponent<MonsterUtil>().speed = originalSpeed;
         GetComponent<MonsterUtil>().MoveTo(transform.position);
         // Debug.Log("Exit Melee Attack State");
+        if (moveAfterAttack)
+        {
+            GetComponent<MonsterUtil>().MoveTo(movePoint.position);
+        }
     }
 
     public override void Tick()

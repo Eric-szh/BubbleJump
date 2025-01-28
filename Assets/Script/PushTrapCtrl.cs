@@ -27,6 +27,7 @@ public class PushTrapCtrl : MonoBehaviour
         if (canPush)
         {
             player.GetComponent<CharacterController2D>().BeingPushed(pushForce);
+            AudioManager.Instance.PlaySound(18, 0.5f);
         }
     }
 

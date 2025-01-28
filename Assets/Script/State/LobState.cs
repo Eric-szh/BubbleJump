@@ -27,7 +27,7 @@ public class LobState : State
 
     public void LeaveLob()
     {
-        GetComponent<StateMachine>().ChangeState(typeof(GBinDecideState));
+        GetComponent<StateMachine>().ChangeState(typeof(PatrolState));
     }
 
     public override void Enter()

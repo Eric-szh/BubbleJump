@@ -114,7 +114,7 @@ public class CharacterController2D : MonoBehaviour
 			{
 				return;
 			}
-			AudioManager.Instance.PlaySound(34, 0.5f);
+			AudioManager.Instance.PlaySound(34, 1f);
 			health -= damage;
 			Debug.Log("Health: " + health);
 			if (health <= 0)

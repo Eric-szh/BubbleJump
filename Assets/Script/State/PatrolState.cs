@@ -15,6 +15,7 @@ public class PatrolState : State
     public State nextState;
     public float detectionRange;
     public float waypointRadius = 0.5f;
+    public float timeAfterSeeingPlayer = 2f;
 
 
     public override void Enter()
@@ -28,6 +29,7 @@ public class PatrolState : State
     {
         // Debug.Log("Exit Patrol State");
         GetComponent<MonsterUtil>().StopMoving();
+        CancelInvoke("ChangeState");
     }
 
     public override void Tick()
@@ -35,7 +37,7 @@ public class PatrolState : State
         // if the player is within the detection range, transition to the next state
         if (Vector3.Distance(transform.position, GetComponent<MonsterUtil>().player.transform.position) < detectionRange && !_justInitialized)
         {
-            _stateMachine.ChangeState(nextState.GetType());
+            Invoke("ChangeState", timeAfterSeeingPlayer);
         }
 
         // if just initialized, set the first waypoint to be closet to the AI
@@ -83,6 +85,11 @@ public class PatrolState : State
         
 
   
+    }
+
+    private void ChangeState()
+    {
+        GetComponent<StateMachine>().ChangeState(nextState.GetType());
     }
 
     private void OnDrawGizmosSelected()

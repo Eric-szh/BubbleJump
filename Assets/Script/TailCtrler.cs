@@ -13,15 +13,18 @@ public class TailCtrler : MonoBehaviour
     public Sprite rightOpen;
     public Sprite leftAim;
     public Sprite rightAim;
+    public Vector3 orignalPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        orignalPos = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.localPosition = orignalPos;
+
         Vector3 direction = MouseUtil.getMouseDirection(gameObject.transform.position);
         // Given the direction calcuate if the tail should be left or right
         if (direction.x > 0)
