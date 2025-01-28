@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 4361435710167657430}
   - component: {fileID: 4888202417132184745}
   - component: {fileID: 2092364882743421536}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Soup
   m_TagString: Stain
   m_Icon: {fileID: 0}

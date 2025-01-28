@@ -56,7 +56,7 @@ public class BossTrashControl : MonoBehaviour
         // Randomize the target position of the trash, using float values for the x and y coordinates
         trash.GetComponent<ProjectileLob>().targetPos = new Vector2(Random.Range(leftBound, rightBound), y);
         trash.GetComponent<ProjectileLob>().useVector = true;
-        trash.GetComponent<ProjectileLob>().maxHeight = 1;
+        trash.GetComponent<ProjectileLob>().maxHeight = 0.7f;
         trash.GetComponent<ProjectileLob>().LaunchProjectile();
     }
 
