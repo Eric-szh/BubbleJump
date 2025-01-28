@@ -8,23 +8,31 @@ public class GameStateManager : MonoBehaviour
     public List<GameObject> pickups = new List<GameObject>();
     public List<bool> pickupGained = new List<bool>();
     public List<bool> pickupGainedStored = new List<bool>();
+
     public List<GameObject> buttons = new List<GameObject>();
     public List<bool> buttonPressed = new List<bool>();
     public List<bool> buttonPressedStored = new List<bool>();
+
     public List<GameObject> doors = new List<GameObject>();
     public List<bool> doorLocked = new List<bool>();
     public List<bool> doorLockedStored = new List<bool>();
+
     public List<bool> powerUpUnlocked = new List<bool>();
     public List<bool> powerUpUnlockedStored = new List<bool>();
+
     public List<GameObject> paperWall;
     public List<bool> paperWallDestroyed;
     public List<bool> paperWallDestroyedStored;
+
     public int inventory = -1;
     public Sprite inventorySprite;
     private int inventoryIndex = -1;
     public int inventoryStored = -1;
     public Sprite inventoryStoredSprite;
     public CharacterSkillControler skillCtrl;
+
+    public List<GameObject> enemies = new List<GameObject>();
+    public List<Transform> enemySpawnPoints = new List<Transform>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
@@ -120,6 +128,12 @@ public class GameStateManager : MonoBehaviour
         paperWallDestroyed[index] = true;
     }
 
+    public void RegisterEnemy(GameObject enemy)
+    {
+        enemies.Add(enemy);
+        enemySpawnPoints.Add(enemy.transform);
+    }
+
     public void Save()
     {
         for (int i = 0; i < pickupGained.Count; i++)
@@ -186,7 +200,15 @@ public class GameStateManager : MonoBehaviour
         for (int i = 0; i < paperWall.Count; i++)
         {
             paperWallDestroyed[i] = paperWallDestroyedStored[i];
-            paperWall[i].SetActive(paperWallDestroyedStored[i]);
+            paperWall[i].SetActive(!paperWallDestroyedStored[i]);
+        }
+
+        // reactivating enemies and reset their position
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            enemies[i].SetActive(true);
+            enemies[i].transform.position = enemySpawnPoints[i].position;
+            enemies[i].GetComponent<MonsterUtil>().Reset();
         }
      }
 

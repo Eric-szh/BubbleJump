@@ -8,7 +8,7 @@ public class FeetCtrl : MonoBehaviour
         int GroundID = LayerMask.NameToLayer("Ground");
         if (other.gameObject.layer == GroundID)
         {
-            Debug.Log("Landed");
+            // Debug.Log("Landed");
             CharacterController2D controller = GetComponentInParent<CharacterController2D>();
             controller.OnLandEvent.Invoke();
             controller.m_Grounded = true;

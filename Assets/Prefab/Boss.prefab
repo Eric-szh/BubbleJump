@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3925496410423013608}
   - component: {fileID: 5693138524861534954}
   - component: {fileID: 4628274870241969510}
+  - component: {fileID: 8783466855148551285}
   - component: {fileID: 6108275061913209470}
   - component: {fileID: 5791810363150156617}
   - component: {fileID: 3914756981616859957}
@@ -85,7 +86,7 @@ GameObject:
   - component: {fileID: 3679841642353964842}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,6 +254,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canExit: 0
   decideTime: 2
+  lastSoup: 0
+--- !u!114 &8783466855148551285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7885640371171842974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5f5ec85fa681874ab70fba7551bc8a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canExit: 0
+  trashcan: {fileID: 0}
+  kickPoint: {fileID: 0}
+  originalSpeed: 0
 --- !u!114 &6108275061913209470
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +287,8 @@ MonoBehaviour:
   nextState: {fileID: 4628274870241969510}
   attackPoint: {fileID: 5357597816816608425}
   attackRange: 0.78
+  attackAnimation: Boss_kick
+  kickDistance: 2
 --- !u!114 &5791810363150156617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,14 +304,19 @@ MonoBehaviour:
   speed: 1
   movingPoint: {x: 0, y: 0, z: 0}
   movingPointTolerance: 0.1
+  setFaceLeft: 1
   faceLeft: 0
   lastFaceLeft: 1
   player: {fileID: 0}
   restrainState: {fileID: 0}
   dieState: {fileID: 3914756981616859957}
   moving: 1
-  health: 50
+  health: 25
+  maxHealth: 1
   hitSoundIndex: 1
+  resetEvents:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3914756981616859957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +331,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canExit: 0
   deadAniName: Boss_die
+  stayDead: 1
+  killSelf: 0
+  stayDeadAniName: Boss_dead
 --- !u!61 &5246275595254341168
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -340,7 +368,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.1614685, y: -0.07842922}
+  m_Offset: {x: 0.1614685, y: -0.020284653}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -350,7 +378,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.8855743, y: 3.1352654}
+  m_Size: {x: 1.8855743, y: 3.0189762}
   m_EdgeRadius: 0
 --- !u!114 &3679841642353964842
 MonoBehaviour:

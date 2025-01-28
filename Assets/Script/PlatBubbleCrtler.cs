@@ -7,6 +7,7 @@ public class PlatBubbleCrtler : MonoBehaviour
     public float floatDesotryTime = 2f;
     public float bubbleLifeTime = 2.5f;
     private float bubbleLifeTimer = 0f;
+    bool isTriggered = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,10 +27,15 @@ public class PlatBubbleCrtler : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (isTriggered)
+        {
+            return;
+        }
         if (col.gameObject.tag == "Player")
         {
             Die();
             AudioManager.Instance.PlaySound(3, 0.5f);
+            isTriggered = true;
         }
         if (col.gameObject.tag == "Paper")
         {
@@ -40,12 +46,14 @@ public class PlatBubbleCrtler : MonoBehaviour
             transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().enabled = true;
             Invoke("Die", floatDesotryTime);
             AudioManager.Instance.PlaySound(3, 0.5f);
+            isTriggered = true;
         }
         if (col.gameObject.tag == "Enemy")
         {
             col.gameObject.GetComponent<MonsterUtil>().Restrain();
             Pop();
             AudioManager.Instance.PlaySound(3, 0.5f);
+            isTriggered = true;
         }
     }
 

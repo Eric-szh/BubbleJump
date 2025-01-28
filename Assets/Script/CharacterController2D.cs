@@ -32,6 +32,8 @@ public class CharacterController2D : MonoBehaviour
 	public GameObject belly;
 	public GameObject tail;
 	public GameObject bodyDetect;
+	public GameObject fallEffect;
+	public GameObject megaLandEffect;	
 
 	public Vector3 megaDropPoint;
 	public int megaDropDistance = 6;
@@ -108,6 +110,10 @@ public class CharacterController2D : MonoBehaviour
             return;
         } else
 		{
+			if (creative || isDead)
+			{
+				return;
+			}
 			AudioManager.Instance.PlaySound(34, 0.5f);
 			health -= damage;
 			Debug.Log("Health: " + health);
@@ -129,6 +135,7 @@ public class CharacterController2D : MonoBehaviour
 		Invoke("RespawnFinished", respawnTime);
 		face.GetComponent<FaceCtrl>().FastBlink();
         GetComponent<AniController>().ChangeAnimationState("Player_idle");
+		GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
 		GameStateManager.Instance.Load();
     }
 
@@ -157,7 +164,6 @@ public class CharacterController2D : MonoBehaviour
 
         if (creative)
         {
-            m_Grounded = true;
 			speed = 10;
         }
 
@@ -186,7 +192,7 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 		// If the player should jump...
-		if (m_Grounded && jump &&!insidePlat)
+		if ((m_Grounded || creative) && jump &&!insidePlat )
 		{
 			// Add a vertical force to the player.
 			m_Grounded = false;
@@ -203,6 +209,7 @@ public class CharacterController2D : MonoBehaviour
                 AudioManager.Instance.PlaySound(36, 0.3f);
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             }
+			tail.transform.localScale = new Vector3(0.7f, 1, 1);
             isJumping = true;
 			HideFace();
 		}
@@ -242,12 +249,13 @@ public class CharacterController2D : MonoBehaviour
 		wasMegaDrop = isMegaDrop;
 		if (down && GetComponent<CharacterSkillControler>().skill3Activated && GetComponent<CharacterSkillControler>().skill3canMegaDrop && !m_Grounded)
 		{
-            isMegaDrop = true;
-			GetComponent<Rigidbody2D>().gravityScale = megaDropGravity;
-
             if (!wasMegaDrop)
 			{
+                isMegaDrop = true;
+                GetComponent<Rigidbody2D>().gravityScale = megaDropGravity;
                 megaDropPoint = transform.position;
+                fallEffect.GetComponent<Animator>().enabled = true;
+				fallEffect.GetComponent<SpriteRenderer>().enabled = true;
             }
         }
 
@@ -338,11 +346,18 @@ public class CharacterController2D : MonoBehaviour
 	public void Land()
 	{
 		isJumping = false;
-		ShowFace();
+		tail.transform.localScale = new Vector3(1, 1, 1);
+
+        if (!isDead)
+		{
+            ShowFace();
+        }
 		// if player is mega dropping, check if the player has fallen enough distance to trigger mega jump
 		if (isMegaDrop)
 		{
-			isMegaDrop = false;
+            fallEffect.GetComponent<Animator>().enabled = false;
+            fallEffect.GetComponent<SpriteRenderer>().enabled = false;
+            isMegaDrop = false;
 			GetComponent<Rigidbody2D>().gravityScale = orignialGravity;
             float fallingDistance = megaDropPoint.y - transform.position.y;
             Debug.Log("Falling Distance: " + fallingDistance);
@@ -354,11 +369,20 @@ public class CharacterController2D : MonoBehaviour
                 Debug.Log("Mega Drop");
 				megaJumpReady = true;
 				transform.localScale = new Vector3(1, 0.6f, 1);
-				// TODO: Deal damage to enemies
-				Invoke("LoseMegaJump", megaJumpWindow);
+				megaLandEffect.GetComponent<Animator>().enabled = true;
+				megaLandEffect.GetComponent<SpriteRenderer>().enabled = true;
+                // TODO: Deal damage to enemies
+                GetComponent<CharacterSkillControler>().Skill3Damage();
+                Invoke("LoseMegaJump", megaJumpWindow);
 			}
         }
 
+	}
+
+	public void BlastOver()
+	{
+		megaLandEffect.GetComponent<Animator>().enabled = false;
+		megaLandEffect.GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	private void LoseMegaJump()
@@ -369,12 +393,14 @@ public class CharacterController2D : MonoBehaviour
 
 	private void HideFace()
 	{
+		Debug.Log("HideFace");	
         face.GetComponent<SpriteRenderer>().enabled = false;
 		belly.GetComponent<SpriteRenderer>().enabled = false;
     }
 
 	private void ShowFace()
 	{
+		Debug.Log("ShowFace");
         face.GetComponent<SpriteRenderer>().enabled = true;
 		belly.GetComponent<SpriteRenderer>().enabled = true;
     }

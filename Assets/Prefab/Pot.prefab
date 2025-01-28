@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 8795615701710421779}
   - component: {fileID: 4823153811978181248}
   - component: {fileID: 324522664255089792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pot
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -157,7 +157,23 @@ MonoBehaviour:
   dieState: {fileID: 2242382317235496151}
   moving: 1
   health: 4
+  maxHealth: 1
   hitSoundIndex: 24
+  resetEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2242382317235496151}
+        m_TargetAssemblyTypeName: DeadState, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7943315898167355751
 MonoBehaviour:
   m_ObjectHideFlags: 0

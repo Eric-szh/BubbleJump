@@ -26,18 +26,9 @@ public class ParticleCollide : MonoBehaviour
 
             GameObject objectHit = collisionEvent.colliderComponent.gameObject;
             // Check if the object have the layer stain 
-            if (objectHit.layer == LayerMask.NameToLayer("Stain"))
+            if (objectHit.CompareTag("Stain"))
             {
-                
-                if (objectHit.transform.parent != null)
-                {
-                    Destroy(objectHit.transform.parent.gameObject);
-                }
-                else
-                {
-                    Destroy(objectHit);
-                }
-
+                Destroy(objectHit);
             }
 
             // Access collision details

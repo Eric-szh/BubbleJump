@@ -11,8 +11,8 @@ public class BossTrashControl : MonoBehaviour
     public float standCd = 10;
     private float standTimer = 20;
 
-    public int leftBound;
-    public int rightBound;
+    public float leftBound;
+    public float rightBound;
     public int y;
     public int numTrash = 5;
 
@@ -51,8 +51,10 @@ public class BossTrashControl : MonoBehaviour
     {
         GameObject trash = Instantiate(trashPrefab, trashLocation.position, Quaternion.identity);
         trash.GetComponent<SpriteRenderer>().sprite = trashList[Random.Range(0, trashList.Count)];
+
         trash.GetComponent<ProjectileLob>().startPoint = trashLocation;
-        trash.GetComponent<ProjectileLob>().targetPos = new Vector3(Random.Range(leftBound, rightBound), y, 0);
+        // Randomize the target position of the trash, using float values for the x and y coordinates
+        trash.GetComponent<ProjectileLob>().targetPos = new Vector2(Random.Range(leftBound, rightBound), y);
         trash.GetComponent<ProjectileLob>().useVector = true;
         trash.GetComponent<ProjectileLob>().maxHeight = 1;
         trash.GetComponent<ProjectileLob>().LaunchProjectile();

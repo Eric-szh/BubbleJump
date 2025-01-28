@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 4359747660468013398}
   - component: {fileID: 8007535572770873790}
   - component: {fileID: 5048485384157327579}
-  - component: {fileID: 1470167904940414152}
+  - component: {fileID: 4106300593710821392}
+  - component: {fileID: -1784893551481486561}
+  - component: {fileID: 1329989175703054292}
   m_Layer: 0
   m_Name: TrashTemp
   m_TagString: Untagged
@@ -183,7 +185,7 @@ MonoBehaviour:
   maxHeight: 0.5
   useVector: 1
   targetPos: {x: 0, y: 0}
---- !u!114 &1470167904940414152
+--- !u!114 &4106300593710821392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,6 +194,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 2160495373717746395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3559fba28c5d30a4b951189eec8b7850, type: 3}
+  m_Script: {fileID: 11500000, guid: 228c28267963dcd4abf20c62826fbc1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1784893551481486561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160495373717746395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4347925340d4d004db410f3dfe6dd030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
+--- !u!114 &1329989175703054292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160495373717746395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f979cb18ab52b499f4ddb6282f2b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
