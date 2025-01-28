@@ -4,12 +4,16 @@ public class AreaSound : MonoBehaviour
 {
     [SerializeField]
     public int soundIndex;
+    public bool stopPlaying = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            AudioManager.Instance.PlayLoopingSound(soundIndex, 0.5f);
+            if (!stopPlaying)
+            {
+                AudioManager.Instance.PlayLoopingSound(soundIndex, 0.5f);
+            }
         }
     }
 
@@ -19,5 +23,11 @@ public class AreaSound : MonoBehaviour
         {
             AudioManager.Instance.StopLoopingSound(soundIndex);
         }
+    }
+
+    public void StopSound()
+    {
+        stopPlaying = true;
+        AudioManager.Instance.StopLoopingSound(soundIndex);
     }
 }

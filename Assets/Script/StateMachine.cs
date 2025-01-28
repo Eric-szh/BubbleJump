@@ -20,7 +20,7 @@ public class StateMachine : MonoBehaviour
 
     public void ChangeState(Type stateType)
     {
-        Debug.Log("Changing state to " + stateType + " from " + _currentState);
+        // Debug.Log("Changing state to " + stateType + " from " + _currentState);
         State newState = (State)GetComponent(stateType);
         if (newState == null)
         {

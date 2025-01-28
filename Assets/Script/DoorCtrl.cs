@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorCtrl : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class DoorCtrl : MonoBehaviour
     public bool transition;
     public string transitionAni;
     public int doorSoundIndex;
+    public UnityEvent onUnlock;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -49,6 +51,7 @@ public class DoorCtrl : MonoBehaviour
             UnlockFinish();
         }
         AudioManager.Instance.PlaySound(doorSoundIndex, 0.5f);
+        onUnlock.Invoke();
     }
 
     public void UnlockFinish()

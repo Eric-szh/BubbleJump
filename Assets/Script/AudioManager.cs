@@ -36,7 +36,7 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         Debug.Log("AudioManager initialized.");
-        PlayLoopingSound(999, 0.15f);
+        PlayLoopingSound(999, 0.10f);
     }
 
     private void InitializeClipDictionary()
