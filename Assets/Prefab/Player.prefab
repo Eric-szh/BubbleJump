@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1371444018036002438}
   - component: {fileID: 8899125229333128958}
+  - component: {fileID: 8470849157239346486}
   m_Layer: 3
   m_Name: Tail
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 153011287
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b1c711ff6c08f344da0d7c43c1c33d5a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 039436c08f4371a4bba7df47b76c04c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,6 +88,42 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &8470849157239346486
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 936847853627948396}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.82247376}
+  m_Radius: 0.14798903
 --- !u!1 &1191643945517284273
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +304,7 @@ MonoBehaviour:
   rightOpen: {fileID: 21300000, guid: e4a7e661a84edf14eb95b464ef30fc48, type: 3}
   leftAim: {fileID: 21300000, guid: 039436c08f4371a4bba7df47b76c04c2, type: 3}
   rightAim: {fileID: 21300000, guid: b7d92b14b62e3b94e8571d55a37a6050, type: 3}
+  orignalPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2232512168564567113
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +374,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1620,18 +1658,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e86b68d9d0863a418e3b93beb6717ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootCD: 0.5
+  shootCD: 1
   bulletPrefab: {fileID: 750750859472937522, guid: faa65e5b5bbad3b449ed0ca3e6bf8fb6, type: 3}
   leftBulletPoint: {fileID: 76165530032428019}
   rightBulletPoint: {fileID: 3743459783459050640}
-  skill1CD: 0.5
+  skill1CD: 2.5
   skill1ParticlePrefab: {fileID: 9003975394951169166, guid: b5fba3b3b2e78e34d8c4268a81deb240, type: 3}
   skill1StartingPoint: {fileID: 3640556238846505956}
   currentParticle: {fileID: 0}
-  skill2CD: 0.5
+  skill2CD: 2.5
   skill2BubblePrefab: {fileID: 7819471768116961273, guid: c2b3c8d59e3bce847a6162c52355db23, type: 3}
   skill2StartingPoint: {fileID: 3640556238846505956}
-  skill3CD: 0.5
+  skill3CD: 5
   skill3Shield: {fileID: 7409011946032059156}
   skill3ShieldDuration: 5
   skill3canMegaDrop: 0

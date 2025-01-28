@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 // all because you fogot to save the state
@@ -33,6 +34,9 @@ public class GameStateManager : MonoBehaviour
 
     public List<GameObject> enemies = new List<GameObject>();
     public List<Transform> enemySpawnPoints = new List<Transform>();
+    private bool resetEnemy = false;
+
+    public event Action DeathEvent;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void Awake()
@@ -203,18 +207,21 @@ public class GameStateManager : MonoBehaviour
             paperWall[i].SetActive(!paperWallDestroyedStored[i]);
         }
 
-        // reactivating enemies and reset their position
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            enemies[i].SetActive(true);
-            enemies[i].transform.position = enemySpawnPoints[i].position;
-            enemies[i].GetComponent<MonsterUtil>().Reset();
-        }
+        resetEnemy = true;
+        DeathEvent.Invoke();
      }
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        if (resetEnemy)
+        {
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                enemies[i].SetActive(true);
+                enemies[i].transform.position = enemySpawnPoints[i].position;
+                enemies[i].GetComponent<MonsterUtil>().Reset();
+            }
+            resetEnemy = false;
+        }
     }
 }

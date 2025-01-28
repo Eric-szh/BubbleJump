@@ -21,7 +21,11 @@ public class PaperCtrl : MonoBehaviour
             GameStateManager.Instance.DestoryPaperWall(paperIndex);
             gameObject.SetActive(false);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
         
-        Destroy(gameObject);
+        
     }
 }

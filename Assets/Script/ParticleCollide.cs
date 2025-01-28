@@ -28,7 +28,7 @@ public class ParticleCollide : MonoBehaviour
             // Check if the object have the layer stain 
             if (objectHit.CompareTag("Stain"))
             {
-                Destroy(objectHit);
+                Destroy(objectHit.transform.parent.gameObject);
             }
 
             // Access collision details
