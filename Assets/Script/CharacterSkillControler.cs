@@ -28,6 +28,7 @@ public class CharacterSkillControler : MonoBehaviour
     public float skill3ShieldDuration = 5f;
     public bool skill3canMegaDrop;
     public bool skill3Activated;
+    public float skill3DamageRadius = 5f;
     public List<bool> skillState = new List<bool> { false, false, false };
 
     public void SetSkillState(int index, bool state)
@@ -115,6 +116,20 @@ public class CharacterSkillControler : MonoBehaviour
         skill3canMegaDrop = true;
         Invoke("Skill3End", skill3ShieldDuration);  
         AudioManager.Instance.PlaySound(4, 0.5f);
+    }
+
+    public void Skill3Damage()
+    {
+        // damage all enemies in the radius tagged as Enemy
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, skill3DamageRadius, 1 << LayerMask.NameToLayer("Enemy"));
+        foreach (Collider2D collider in colliders)
+        {
+            MonsterUtil monster = collider.GetComponent<MonsterUtil>();
+            if (monster != null)
+            {
+                monster.Damage(1);
+            }
+        }
     }
 
     public void Skill3Blocked()

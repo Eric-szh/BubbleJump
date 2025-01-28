@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MonsterUtil : MonoBehaviour
 {
@@ -15,7 +16,10 @@ public class MonsterUtil : MonoBehaviour
     public State dieState;
     public bool moving = true;
     public int health = 1;
+    public int maxHealth = 1;
     public int hitSoundIndex = 1;
+
+    public UnityEvent resetEvents;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +36,8 @@ public class MonsterUtil : MonoBehaviour
             lastFaceLeft = false;
             FaceRight();
         }
+        maxHealth  = health;
+        GameStateManager.Instance.RegisterEnemy(gameObject);
     }
 
     // Update is called once per frame
@@ -152,5 +158,11 @@ public class MonsterUtil : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    public void Reset()
+    {
+        health = maxHealth;
+        resetEvents.Invoke();
     }
 }

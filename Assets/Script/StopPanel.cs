@@ -34,6 +34,6 @@ public class DialogController : MonoBehaviour
     {
         // Load the starting menu scene
         Time.timeScale = 1f; // Ensure time is running normally
-        SceneManager.LoadScene("Starting_Menu");
+        SceneManager.LoadScene("StartingMenu2");
     }
 }

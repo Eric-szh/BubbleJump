@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 7224711306167346393}
   - component: {fileID: 742398941243840137}
   - component: {fileID: 2949741810523620324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GBag
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -275,7 +275,23 @@ MonoBehaviour:
   dieState: {fileID: 4438938412796880301}
   moving: 1
   health: 1
+  maxHealth: 1
   hitSoundIndex: 21
+  resetEvents:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4438938412796880301}
+        m_TargetAssemblyTypeName: DeadState, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1073741125171403159
 MonoBehaviour:
   m_ObjectHideFlags: 0

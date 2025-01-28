@@ -3,6 +3,9 @@ using UnityEngine;
 public class DeadState : State
 {
     public string deadAniName;
+    public bool stayDead;
+    public bool killSelf = false;
+    public string stayDeadAniName;
     public override void Enter()
     {
         canExit = false;
@@ -19,7 +22,23 @@ public class DeadState : State
 
     public void Kill()
     {
-        Destroy(gameObject);
+        // set the monster to inactive
+        if (killSelf) {
+            gameObject.SetActive(false);
+        }
+
+        if (stayDead)
+        {
+            GetComponent<AniController>().ChangeAnimationState(stayDeadAniName);
+        }
+
+              
+    }
+
+    public void Reset()
+    {
+        canExit = true;
+        GetComponent<StateMachine>().ChangeState(GetComponent<StateMachine>().startState.GetType());
     }
 
 }
